@@ -4,72 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Admission Writing</title>
+    <!-- Importing modern fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
+        /* Minimalist and modern page styling */
         body {
-            font-family: 'Courier New', Courier, monospace;
+            /* Using a subtle gradient background for a sophisticated look */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Roboto', sans-serif; /* A clean sans-serif font */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f5f5f5;
+            color: #333;
         }
-        .container {
-            width: 8.5in;
-            height: 11in;
-            border: 2px solid #000;
-            padding: 1in;
-            box-sizing: border-box;
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .header, .footer {
+
+        /* The main container for the title */
+        .title-container {
             text-align: center;
-            font-weight: bold;
+            padding: 60px 40px;
+            background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent white card */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+
+        /* The main title styling */
         h1 {
-            font-size: 24pt;
+            font-family: 'Montserrat', sans-serif; /* A modern, bold font for the title */
+            font-size: 3rem;
+            font-weight: 600;
+            color: #2c3e50; /* A deep, professional color */
+            margin: 0 0 20px 0; /* Add some space below the title */
+            letter-spacing: 0.5px;
+        }
+
+        /* Optional subtitle for your name or institution */
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #555;
             margin: 0;
-            text-decoration: underline;
+            letter-spacing: 1px;
         }
-        .info-block {
-            margin-top: 2in;
-            text-align: left;
-            font-size: 12pt;
-        }
-        .info-block p {
-            margin: 0.5in 0;
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .title-container {
+                padding: 40px 25px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            </div>
 
-        <div class="content">
-            <h1>English Admission Writing</h1>
-            
-            <div class="info-block">
-                <p>SUBJECT: [Your Subject Here, e.g., Application Essay]</p>
-                <p>TO: [Recipient, e.g., Admissions Committee]</p>
-                <p>FROM: [Your Name]</p>
-                <p>DATE: [Date]</p>
-            </div>
-        </div>
-
-        <div class="footer">
-            </div>
+    <div class="title-container">
+        <h1>English Admission Writing</h1>
+        <p>[mil English Academy]</p>
     </div>
+
 </body>
 </html>
