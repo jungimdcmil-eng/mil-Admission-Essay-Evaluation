@@ -44,13 +44,20 @@
             letter-spacing: 0.5px;
         }
 
-        /* Optional subtitle for your name or institution */
-        p {
+        /* Subtitle link styling */
+        .subtitle-link {
             font-size: 1.2rem;
             font-weight: 300;
             color: #555;
             margin: 0;
             letter-spacing: 1px;
+            text-decoration: none; /* Remove default underline */
+            transition: color 0.3s ease; /* Smooth hover effect */
+        }
+        
+        /* Darken link on hover for better interaction feedback */
+        .subtitle-link:hover {
+            color: #2c3e50;
         }
 
         /* Responsive adjustments for smaller screens */
@@ -58,7 +65,7 @@
             h1 {
                 font-size: 2.2rem;
             }
-            p {
+            .subtitle-link {
                 font-size: 1rem;
             }
             .title-container {
@@ -71,7 +78,8 @@
 
     <div class="title-container">
         <h1>English Admission Writing</h1>
-        <p>[mil English Academy]</p>
+        <a href="HayoonWoo.html" class="subtitle-link">HayoonWoo</a>
+   
     </div>
 
 </body>
