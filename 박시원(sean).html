@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation - 박시원</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #8B5CF6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #8B5CF6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-proficient { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #8B5CF6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>박시원 (Sean) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 에세이 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 에세이 (Student's Original Essay)
+            </h3>
+            <div class="original-essay">
+Have you ever imagined about the best place you have visit? Many people would want to go some where like everland. However, I like Disney land the most because of many reasons.
+
+To begin with, I like Disneyland because I like the realler coacter. For example, it goes in many ways so it's very fun That roaller cogster was the best on the Disney Land. It was very fun that I want to ribe it now
+
+Furthermore, I like Disney Land because of a monster house. Forexample, the chair we sit was moving to saw some thing scary House
+
+Last but not least I like Disneyland because of there was a place what explain about robot. For example, there was a moving, ele venter and there is a robot we need to fight. It was a fun thing.
+
+For these reasons, you would know why I like Disney land the most I like Disney Land the most because of roaller coacter, Monster houer, and robot elevator I hope I could go there right now.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>5문단 에세이 구조를 명확히 이해하고 있으며, 'To begin with', 'Furthermore', 'Last but not least'와 같은 적절한 전환어를 사용하여 문단을 구분하고 있습니다. 서론과 결론도 제 역할을 하고 있습니다. 다만, 서론의 주제문(Thesis Statement)이 'many reasons'라고만 언급하여 구체성이 부족하고, 각 본론 문단에 내용을 마무리하는 맺음 문장(Closing Sentence)이 없습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>디즈니랜드를 좋아하는 이유로 '롤러코스터', '몬스터 하우스', '로봇'이라는 세 가지 명확한 근거를 제시하고, 'For example'을 사용하여 각 이유를 뒷받침하려는 시도가 돋보입니다. 롤러코스터가 여러 방향으로 움직이는 점, 의자가 움직이며 무서운 것을 보는 점 등 구체적인 묘사가 좋습니다. 각 예시가 조금 더 상세하게 발전되었다면 더 좋은 점수를 받을 수 있었을 것입니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>문장을 구성하는 능력이 있으나, 철자 오류('realler coacter', 'Forexample', 'houer')가 매우 많습니다. 'the chair we sit was moving to saw' 와 같이 시제와 동사 형태에 대한 오류가 빈번하며, 'a place what explain' 처럼 문법적으로 어색한 표현이 많아 의미 전달을 방해합니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>8 / 12 (67%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-intermediate">G3: Intermediate</span>
+                    <p><strong>오류 (Errors):</strong> 'imagined', 'reasons', 'monster', 'robot' 등 G3 수준의 어휘를 사용하고 있으나, 'roller coaster'를 'realler coacter', 'roaller cogster'로, 'because'를 'reemuse', 'berguse'로 쓰는 등 핵심 단어의 철자 오류가 심각하여 가독성을 크게 해칩니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 단어를 소리 나는 대로 쓰는 경향이 강하므로, 정확한 철자를 보고 쓰는 연습이 시급합니다. 특히 자주 사용하는 단어(because, roller coaster, example)의 철자를 반복적으로 연습하여 정확히 암기해야 합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">G2/G3: Beginner/Intermediate</span>
+                    <p><strong>오류 (Errors):</strong> 문장 내에서 시제가 일관되지 않는 오류가 있습니다 (예: 'the chair we sit was moving'). 'to saw'와 같이 to 부정사 뒤에 동사 원형이 아닌 과거형을 사용하거나, 'a place what explain' 처럼 관계대명사 사용이 어색한 등 문법적 오류가 많습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 한 문장 안에서는 시제를 통일하는 연습이 필요합니다. 'to' 다음에는 항상 동사의 원래 모습(see, ride, go)이 온다는 규칙을 집중적으로 학습해야 합니다. 'a place that explains'처럼 관계대명사 'that'을 사용하는 연습도 도움이 될 것입니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-proficient">G3/G4: Intermediate/Advance</span>
+                    <p><strong>오류 (Errors):</strong> 'However', 'To begin with', 'Furthermore'와 같은 접속부사를 사용하여 문단 간의 연결을 시도하는 등 문장 구조에 대한 이해도가 높습니다. 하지만 'It was very fun that I want to ribe it now'와 같이 어색한 복문 구조를 사용하기도 합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이미 복잡한 문장을 만들 수 있는 잠재력이 있습니다. 'It was so fun that I wanted to ride it again.'처럼 'so ~ that ...' 구문을 사용하여 원인과 결과를 나타내는 문장을 만드는 연습을 하면 표현력이 더욱 향상될 것입니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Overall Essay (에세이 구조)</h4>
+                    <span class="level level-proficient">G4: Advance</span>
+                    <p><strong>오류 (Errors):</strong> 5문단 에세이의 기본 구조를 매우 잘 이해하고 있으며, 각 문단의 역할을 알고 있습니다. 이는 G2 학생에게서 보기 드문 뛰어난 능력입니다. 다만, 서론의 주제문이 앞으로 나올 세 가지 이유(롤러코스터, 몬스터 하우스, 로봇)를 미리 언급하지 않아 구체성이 떨어집니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 현재의 훌륭한 구조를 한 단계 발전시키기 위해, 서론의 마지막 문장에 본론에서 다룰 세 가지 핵심 단어를 미리 넣어주는 연습을 해보세요. 예를 들어, "I like Disneyland the most because of its exciting roller coasters, the scary monster house, and the fun robot experience." 와 같이 작성할 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Essay Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (친절한 설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">Have you ever imagined about the best place you have visit?</td><td class="corrected-sentence">Have you ever imagined the best place you have <strong>visited</strong>?</td><td>'have' 다음에는 동사의 과거분사형인 'visited'를 써야 해요. '~에 대해 상상하다'는 'imagine about'이 아니라 'imagine'이라고만 써요.</td></tr>
+                            <tr><td class="original-sentence">However, I like Disney land the most because of many reasons.</td><td class="corrected-sentence">However, I like <strong>Disneyland</strong> the most for many reasons.</td><td>'Disneyland'는 하나의 이름이라서 붙여 쓰고, 대문자로 시작해야 해요. '~한 이유로'라고 할 때는 'because of' 대신 'for'를 쓰는 것이 더 자연스러워요.</td></tr>
+                            <tr><td class="original-sentence">To begin with, I like Disneyland because I like the realler coacter.</td><td class="corrected-sentence">To begin with, I like Disneyland because I like the <strong>roller coaster</strong>.</td><td>'roller coaster'의 정확한 철자를 익히는 연습이 필요해요.</td></tr>
+                            <tr><td class="original-sentence">That roaller cogster was the best on the Disney Land. It was very fun that I want to ribe it now</td><td class="corrected-sentence">That <strong>roller coaster</strong> was the best in <strong>Disneyland</strong>. It was so fun that I want to <strong>ride</strong> it now.</td><td>철자를 고치고, 'Disneyland 안에서'라는 뜻이므로 'in'을 썼어요. '너무 재미있어서 ~하고 싶다'는 'so fun that I want to...'라고 표현해요.</td></tr>
+                            <tr><td class="original-sentence">Forexample, the chair we sit was moving to saw some thing scary House</td><td class="corrected-sentence">For example, the chair we <strong>sat in was moving to see something</strong> scary in the <strong>house</strong>.</td><td>과거 이야기니까 'sit'의 과거형 'sat'을 쓰고, 'to' 다음에는 동사 원래 모습인 'see'를 써야 해요.</td></tr>
+                             <tr><td class="original-sentence">Last but not least I like Disneyland because of there was a place what explain about robot.</td><td class="corrected-sentence">Last but not least, I like Disneyland because there was a place <strong>that explained</strong> about <strong>robots</strong>.</td><td>'설명해주는 장소'는 'a place that explained'라고 표현하는 것이 더 자연스러워요. 여러 로봇들이 있으니 'robots'라고 써요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 2: 어휘 선택 및 문장 흐름 교정</h4>
+                <p class="text-gray-600"><strong>철자 오류 (Spelling Errors):</strong> 글 전반에 걸쳐 'roller coaster', 'because', 'example', 'house' 등 핵심 단어들의 철자를 소리 나는 대로 쓰는 경향이 매우 강합니다. 이는 글의 전문성을 크게 떨어뜨리고, 독자가 내용을 이해하는 데 큰 어려움을 줍니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 글쓰기의 가장 기본은 정확한 철자입니다. 자주 틀리는 단어 목록을 만들어 매일 보고 쓰는 연습을 하는 것이 매우 중요합니다. 눈으로 단어의 모양을 익히고, 손으로 직접 써보면서 정확한 철자를 몸에 익혀야 합니다.</p>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 3: 최종 교정 에세이 (Final Corrected Essay)</h4>
+                <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 엄격한 에세이 형식 기준에 맞춰 재구성한 모델 에세이입니다. 학생의 원본 글에서 변경되거나 추가된 부분은 <strong>굵은 글씨</strong>로 표시했습니다.</p>
+                <div class="final-essay">
+                    <strong>My Favorite Place: Disneyland</strong><br><br>
+                    Have you ever imagined the best place you have <strong>visited</strong>? Many people would want to go somewhere like Everland. However, I like <strong>Disneyland</strong> the most for many reasons. <strong>I love it for its amazing roller coaster, the scary monster house, and a fun robot experience.</strong><br><br>
+                    To begin with, I like Disneyland because I like the <strong>roller coaster</strong>. For example, it goes in many <strong>different directions</strong>, so it's very fun. That <strong>roller coaster</strong> was the best in <strong>Disneyland</strong>. It was so fun that I want to <strong>ride</strong> it again right now. <strong>I will never forget how exciting it was.</strong><br><br>
+                    Furthermore, I like <strong>Disneyland</strong> because of the monster house. For example, the chair we <strong>sat in moved around to show us something</strong> scary. <strong>We went through dark rooms and saw many different monsters. It was frightening, but I enjoyed it a lot.</strong><br><br>
+                    Last but not least, I like Disneyland because there was a place <strong>that explained</strong> about <strong>robots</strong>. For example, there was a moving elevator, and then there <strong>was</strong> a robot we had to fight in a game. It was a fun thing to do. <strong>I felt like I was in a real science fiction movie.</strong><br><br>
+                    For these reasons, you <strong>now</strong> know why I like <strong>Disneyland</strong> the most. I like <strong>Disneyland</strong> because of <strong>the roller coaster, the monster house,</strong> and <strong>the</strong> robot elevator. I hope I can go there again right now.
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 시원 (Sean) 학생.</h4>
+                <p>시원 학생, 안녕하세요!</p>
+                <p class="mt-4">디즈니랜드에 대한 멋진 글 잘 읽었어요. 롤러코스터, 몬스터 하우스, 로봇과 싸우는 엘리베이터까지! 정말 신나고 재미있는 경험들을 자세하게 설명해주어서, 선생님도 마치 디즈니랜드에 가 있는 것 같은 기분이 들었어요. 글의 구조를 서론, 본론, 결론으로 나누고, 본론마다 'To begin with', 'Furthermore' 같은 멋진 표현을 사용한 점은 정말 훌륭해요! G2 학생이 이 정도로 글의 틀을 잘 이해하고 있다는 것은 대단한 장점이에요.</p>
+                <p class="mt-4">시원 학생의 글은 이미 좋은 '설계도'를 가지고 있어요. 이제 그 설계도에 맞춰 집을 더 튼튼하게 짓는 방법을 하나 알려줄게요. 바로 **'단어의 정확한 얼굴(철자) 기억하기'** 예요.</p>
+                <p class="mt-4">글에서 'roller coaster'나 'because' 같은 단어들을 조금씩 다르게 썼더라고요. 단어들은 저마다 고유한 얼굴(철자)을 가지고 있어서, 그 얼굴을 정확하게 그려주어야 다른 사람들이 헷갈리지 않고 뜻을 바로 알 수 있어요. 다음 글을 쓸 때는, **자주 쓰는 단어 몇 개(because, example, roller coaster)만이라도 사전을 찾아보고 "아, 이 단어는 이렇게 생겼구나!"하고 얼굴을 정확히 익힌 다음 글을 써보는 연습**을 해보세요. 이것만 고쳐도 시원 학생의 글이 훨씬 더 전문적으로 보이고, 멋진 내용이 더 잘 전달될 거예요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
+
