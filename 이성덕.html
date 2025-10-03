@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation - 이성덕</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #8B5CF6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #8B5CF6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-proficient { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #8B5CF6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>이성덕 (Dio) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 에세이 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 에세이 (Student's Original Essay)
+            </h3>
+            <div class="original-essay">
+I'm going to tell the tree quailies where I vist. It is Vetiam, philpine, and Josun Hotel. isn't it exciting?
+
+First I went to Vetiam this year. It was a second anothervice. I swim and I go on the water slide. it was very fun. And I saw House gecko. I want to stay more.
+Secondly, I went philpine. It was the first another country trip. That swimming pool was amazing. I eat many food. I saw House gecko. I want to not leave.
+
+Last, I went Jousun Hotel this year and I'm going next week. The pool is good, the food is very yummy. The hotel is very very the Best good. It's so exciting.
+In conclusion, that three quailtais I vist on my life. I want to explam more but It is three reasons full. Thank you for reading for my essay. see you later.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>문단을 나누고 'First', 'Secondly', 'Last'와 같은 전환어를 사용하려는 시도는 긍정적입니다. 하지만 서론은 방문한 장소를 단순히 나열할 뿐, 에세이의 중심 생각과 이유를 제시하는 주제문(Thesis Statement)의 역할을 하지 못합니다. 각 본론 문단도 주제문과 맺음 문장 없이 경험을 나열하는 데 그치고 있으며, 결론은 본론 내용을 요약하지 못하고 갑작스럽게 끝맺습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>'워터 슬라이드', '도마뱀붙이', '맛있는 음식' 등 구체적인 경험을 언급하려는 시도는 좋으나, 각 경험에 대한 설명이 전혀 없습니다. 워터 슬라이드가 왜 재미있었는지, 도마뱀붙이를 보고 무엇을 느꼈는지, 어떤 음식이 맛있었는지 등 주장을 뒷받침할 구체적인 예시나 상세한 묘사가 전무하여 내용이 매우 빈약합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>자신의 생각을 영어로 표현하려는 의지는 있으나, 문법적 오류가 매우 심각합니다. 시제를 현재와 과거, 미래까지 무분별하게 혼용하고('I swim and I go... I'm going next week'), 주어-동사 불일치, 부정문 오류('I want to not leave') 등 기초적인 문법 규칙을 거의 지키지 못하고 있습니다. 철자 오류('quailies', 'Vetiam', 'philpine')도 매우 많아 의미 전달에 큰 어려움을 줍니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>4 / 12 (33%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-beginner">Beginner (G2)</span>
+                    <p><strong>오류 (Errors):</strong> 사용된 어휘가 G2 수준의 기본적인 단어('fun', 'good', 'yummy')에 머물러 있습니다. 'quailies' (qualities), 'Vetiam' (Vietnam), 'philpine' (Philippines), 'Jousun' (Josun), 'explam' (explain) 등 소리 나는 대로 적은 철자 오류가 매우 많아 정확한 단어 학습이 시급합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 단어의 정확한 철자를 익히는 것이 가장 중요합니다. 그림 카드를 보며 단어를 따라 쓰고 소리 내어 읽는 연습을 반복해야 합니다. G3 수준의 'delicious', 'wonderful', 'enjoyable' 같은 단어를 배우기 전에, 현재 아는 단어부터 정확하게 쓰는 연습이 필요합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>오류 (Errors):</strong> 과거, 현재, 미래 시제를 완전히 혼용하고 있어 시제에 대한 개념이 거의 정립되지 않은 것으로 보입니다. 'I swim and I go', 'I eat many food' 와 같이 과거 경험을 현재 시제로 표현하는 오류가 반복됩니다. 부정문 'I want to not leave' 또한 문법적으로 틀린 표현입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 과거에 있었던 일을 말할 때는 동사를 과거형(went, swam, ate, saw)으로 바꿔야 한다는 규칙을 처음부터 배우고 집중적으로 훈련해야 합니다. 하나의 이야기에서는 하나의 시제를 일관되게 사용하는 연습이 가장 중요합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-beginner">Beginner (G2)</span>
+                    <p><strong>오류 (Errors):</strong> 대부분 짧고 단순한 구조의 문장을 사용하고 있습니다. 아이디어를 나열할 때 문장 간의 논리적 연결 없이 'And'로만 이어가는 경우가 많습니다. 'that three quailtais I vist on my life' 와 같이 의미를 파악하기 어려운 불완전한 문장 구조도 보입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 먼저 '주어 + 동사 + 목적어' 형태의 완전한 문장을 만드는 연습에 집중해야 합니다. 예를 들어, "I went to Vietnam. I swam in the pool. It was fun." 과 같이, 한 문장에는 하나의 생각만 담고 마침표로 명확하게 끝내는 연습을 하는 것이 중요합니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Overall Essay (에세이 구조)</h4>
+                    <span class="level level-beginner">Beginner (G2)</span>
+                    <p><strong>오류 (Errors):</strong> 문단을 나누고 전환어를 사용하려는 시도는 좋았으나, 에세이의 핵심 요소를 전혀 이해하지 못하고 있습니다. 서론은 주제문을 포함하지 않고, 각 본론은 주제에 대한 이유가 아닌 시간 순서에 따른 장소 나열에 그치고 있습니다. 결론 또한 본론 내용을 요약하지 못합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> '에세이'는 일기가 아니라, 자신의 주장을 논리적으로 설명하는 글이라는 개념부터 배워야 합니다. 하나의 장소(예: 베트남)를 정하고, 그 장소가 왜 좋았는지에 대한 '이유'를 2~3가지 생각해보는 연습부터 시작해야 합니다. (예: 1. 재미있는 워터슬라이드, 2. 신기한 도마뱀붙이)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Essay Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (친절한 설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">I'm going to tell the tree quailies where I vist. It is Vetiam, philpine, and Josun Hotel.</td><td class="corrected-sentence">I'm going to tell <strong>you about three qualities</strong> of the places I <strong>visited</strong>. They are <strong>Vietnam, the Philippines</strong>, and <strong>the Josun Hotel</strong>.</td><td>'qualities', 'visited', 'Vietnam', 'Philippines', 'Josun Hotel'의 철자를 고쳤어요. 문장의 의미를 더 명확하게 다듬었어요.</td></tr>
+                            <tr><td class="original-sentence">First I went to Vetiam this year. It was a second anothervice. I swim and I go on the water slide. it was very fun.</td><td class="corrected-sentence">First, I went to <strong>Vietnam</strong> this year. It was my second <strong>overseas trip</strong>. I <strong>swam</strong> and <strong>went</strong> on the water slide. It was very fun.</td><td>'해외여행'은 'overseas trip'이라고 해요. 과거에 있었던 일이니까 동사는 'swam'과 'went'를 써야 해요.</td></tr>
+                            <tr><td class="original-sentence">I saw House gecko. I want to stay more.</td><td class="corrected-sentence">I saw <strong>a house gecko</strong>. I <strong>wanted</strong> to stay more.</td><td>'a'를 붙여주고, 과거의 감정이니까 'wanted'라고 써야 더 자연스러워요.</td></tr>
+                            <tr><td class="original-sentence">Secondly, I went philpine. It was the first another country trip. That swimming pool was amazing. I eat many food.</td><td class="corrected-sentence">Secondly, I went <strong>to the Philippines</strong>. It was my first <strong>trip to another country</strong>. That swimming pool was amazing. I <strong>ate</strong> many <strong>foods</strong>.</td><td>'Philippines'의 철자를 고치고, 과거 시제 동사 'ate'를 사용했어요. 'many' 뒤에는 'foods'처럼 복수형을 써요.</td></tr>
+                            <tr><td class="original-sentence">Last, I went Jousun Hotel this year and I'm going next week. The pool is good, the food is very yummy.</td><td class="corrected-sentence"><strong>Lastly</strong>, I went <strong>to the Josun Hotel</strong> this year, and I'm going again next week. The pool <strong>was</strong> good, and the food <strong>was</strong> very yummy.</td><td>'Last'보다는 'Lastly'가 더 자연스러워요. 이미 지나간 경험이니까 동사는 과거형 'was'를 써야 해요.</td></tr>
+                             <tr><td class="original-sentence">In conclusion, that three quailtais I vist on my life. I want to explam more but It is three reasons full.</td><td class="corrected-sentence">In conclusion, <strong>those are the three places I have visited in my life.</strong> I want to <strong>explain</strong> more, but these three reasons are enough.</td><td>결론 부분의 의미를 더 명확하게 전달하도록 문장을 완전히 새로 고쳤어요. 'explain'의 철자를 바로잡았어요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 2: 어휘 선택 및 문장 흐름 교정</h4>
+                <p class="text-gray-600"><strong>아이디어의 비약 및 구체성 부족 (Lack of Cohesion and Specificity):</strong> 각 문단이 하나의 장소에 대한 경험을 나열하지만, 왜 그 경험이 좋았는지에 대한 설명이 전혀 없습니다. 'fun', 'amazing', 'good', 'yummy'와 같은 단순한 형용사만 반복하여 사용하고, 글의 깊이가 매우 얕습니다. 결론 부분은 본론과 아무런 관련이 없는 내용으로 구성되어 있습니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 글의 주제를 하나로 좁히는 연습이 필요합니다. 세 장소를 모두 쓰는 대신, 가장 좋았던 한 곳(예: 베트남)을 정하고, 그곳이 왜 좋았는지에 대한 이유 2~3가지를 자세히 설명하는 방식으로 글을 써야 합니다. 예를 들어, "베트남 워터슬라이드는 매우 길고 빨라서 스릴이 넘쳤다" 와 같이 구체적인 느낌을 묘사하는 연습이 중요합니다.</p>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 3: 최종 교정 에세이 (Final Corrected Essay)</h4>
+                <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 엄격한 에세이 형식 기준에 맞춰 재구성한 모델 에세이입니다. 학생의 원본 글에서 변경되거나 추가된 부분은 <strong>굵은 글씨</strong>로 표시했습니다.</p>
+                <div class="final-essay">
+                    <strong>My Favorite Trip to Vietnam</strong><br><br>
+                    <strong>Have you ever been on an exciting trip?</strong> I'm going to tell you about the best place I have <strong>visited</strong>. It is <strong>Vietnam</strong>, and it was my favorite trip <strong>because of the fun water park and the interesting animals.</strong><br><br>
+                    First, I <strong>had a lot of fun at the water park in Vietnam.</strong> I went there this year, and it was my second <strong>overseas</strong> trip. I <strong>swam</strong> in the pool and <strong>went</strong> on a big water slide. <strong>The slide was very fast and long, so I felt thrilled as I went down. It was very fun.</strong><br><br>
+                    Second, <strong>I loved Vietnam because I saw a cool animal there.</strong> After swimming, I <strong>saw a house gecko</strong> on the wall. <strong>It was small and moved very quickly, and I had never seen one up close before. Seeing a new animal in a different country was amazing.</strong> I <strong>wanted</strong> to stay and watch it for a longer time.<br><br>
+                    In conclusion, <strong>Vietnam was the best place I have visited.</strong> I <strong>was able to enjoy both the exciting water slide and see a new animal like the house gecko.</strong> Thank you for reading my essay.
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 성덕 (D.D) 학생.</h4>
+                <p>성덕 학생, 안녕하세요!</p>
+                <p class="mt-4">베트남, 필리핀, 그리고 조선 호텔까지, 정말 멋진 곳들을 여행했네요! 워터슬라이드를 타고, 도마뱀붙이를 보고, 맛있는 음식을 먹었던 즐거운 경험들을 영어로 공유해주려는 모습이 정말 보기 좋았어요. 글의 구조를 나누어 쓰려고 노력한 점도 칭찬해주고 싶어요.</p>
+                <p class="mt-4">성덕 학생의 글은 이제 막 탐험을 시작한 용감한 탐험가 같아요. 이제 그 탐험가가 더 멋진 지도를 그릴 수 있도록 비밀 기술을 한 가지 알려줄게요. 바로 **'한 가지 보물에만 집중하기'** 예요.</p>
+                <p class="mt-4">이번 글에서는 세 곳의 장소를 모두 이야기했지만, 글이 너무 짧아서 각 장소의 매력을 충분히 보여주기 어려웠어요. 다음 글을 쓸 때는, **가장 좋았던 장소 딱 한 곳만 정해서** 그곳에 대한 이야기만 자세히 써보는 거예요. 예를 들어, '베트남'을 골랐다면, "베트남이 왜 좋았을까?"에 대한 이유 두 가지(예: 워터슬라이드, 도마뱀붙이)를 찾아서 각각의 본론 문단에서 자세히 설명해주는 거죠. "워터슬라이드가 얼마나 높고 빨랐는지", "도마뱀붙이가 어떻게 생겼고 무엇을 하고 있었는지"를 더 자세히 써주면, 읽는 사람이 마치 그곳에 함께 있는 것처럼 느낄 수 있을 거예요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
