@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation - 이유진</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #8B5CF6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #8B5CF6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-proficient { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #8B5CF6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #8B5CF6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>이유진 (Jin) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 에세이 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 에세이 (Student's Original Essay)
+            </h3>
+            <div class="original-essay">
+My favorite place is Japan. Because there are many things to do. I can eat ramen, and TV show in the hotel, or I go to aqurium to see cool fish. First, I go to market to eat ramen. And my family buy me a hat dog. And I eat ramen in the hotel, and watch TV Show. It was so relaxing! The Next day, I go to aqurium And I saw a cool fish. there are prihanas, whale sharks. It was so cool! and at the aquirium my parents brought me a ice cream it was so good! last, I go to toy store and there are lots of toys and dolls, and I bay a cute cinnamorol. and I wanted to go again!
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>에세이의 기본 구조가 전혀 없습니다. 서론, 본론, 결론의 구분이 없으며 글 전체가 하나의 문단으로 이루어져 있습니다. 생각의 흐름에 따라 사건을 시간 순서대로 나열하고 있지만, 이는 에세이의 형식적 구조와는 거리가 멉니다. 주제문, 주제 문장, 맺음 문장 등 필수 요소가 모두 누락되었습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>일본에서 한 일(라면 먹기, 아쿠아리움 가기, 장난감 사기)을 구체적으로 언급한 점은 좋습니다. 특히 'prihanas'(piranhas), 'whale sharks', 'cinnamorol' 등 구체적인 명사를 사용하여 내용을 풍부하게 만들려는 시도가 돋보입니다. 하지만 각 경험에 대한 개인적인 생각이나 느낌에 대한 설명이 'so relaxing', 'so cool' 등 단순한 표현에 그쳐 깊이가 부족합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>글 전체적으로 시제가 현재와 과거를 오가는 오류(Tense Shift)가 매우 심각하게 나타납니다. 주어-동사 불일치('my family buy me'), 철자 오류('aqurium', 'prihanas'), 불완전한 문장 등 기초적인 문법 오류가 너무 많아 의미 전달을 심각하게 방해합니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>4 / 12 (33%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-beginner">Beginner (G2)</span>
+                    <p><strong>오류 (Errors):</strong> 사용된 어휘가 'eat', 'go', 'see', 'buy' 등 G2 수준의 매우 기본적인 단어에 한정되어 있습니다. 'aqurium', 'prihanas' (piranhas), 'bay' (buy) 등 소리에 의존한 철자 오류가 많아 정확한 단어 형태에 대한 인지가 부족합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 단어의 정확한 철자를 익히는 것이 가장 시급합니다. 'relaxing'이나 'cool' 대신 'peaceful', 'fascinating', 'amazing' 과 같은 G3 수준의 단어를 사용하여 감정을 더 다양하게 표현하는 연습이 필요합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>오류 (Errors):</strong> 과거 경험에 대해 이야기하면서 현재 시제('I go to market')와 과거 시제('I saw a cool fish')를 무분별하게 혼용하여 글의 전체적인 시제가 완전히 무너져 있습니다. 3인칭 단수 주어 뒤에 동사 원형을 사용하는 오류('my family buy me')도 나타납니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 과거에 있었던 일을 이야기할 때는 모든 동사를 과거형(ate, went, saw, bought)으로 통일해야 한다는 규칙을 배우고 집중적으로 연습하는 것이 가장 중요합니다. 하나의 이야기를 할 때는 하나의 시제만 사용해야 한다는 개념을 익혀야 합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-beginner">Beginner (G2)</span>
+                    <p><strong>오류 (Errors):</strong> 'Because there are many things to do'와 같이 'Because'로 문장을 시작하여 불완전한 문장(Sentence Fragment)을 만들었습니다. 대부분의 문장이 단순 나열식의 단문(Simple Sentence)이며, 문장 구조의 다양성이 전혀 없습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 'Because'는 두 문장을 연결해주는 역할을 한다는 것을 배워야 합니다. 예를 들어, "My favorite place is Japan because there are many things to do."와 같이 완전한 문장을 만드는 연습이 필요합니다. 또한, 'and', 'but', 'so'를 사용하여 문장들을 연결하면 글이 더 부드러워집니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Overall Essay (에세이 구조)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>오류 (Errors):</strong> 에세이의 기본 형식인 서론, 본론, 결론 구조에 대한 이해가 전혀 없습니다. 글이 시간의 흐름에 따라 사건을 나열하는 일기 형식으로 작성되어, 논리적인 구조를 갖추지 못했습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 글을 쓰기 전에 생각을 정리하는 '브레인스토밍'부터 시작해야 합니다. "일본이 왜 좋은가?"라는 질문에 대해 '음식', '아쿠아리움', '장난감' 이라는 세 가지 키워드를 먼저 정하고, 각 키워드에 대해 한 덩어리씩 글을 써보는 연습을 하는 것이 가장 중요합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Essay Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (친절한 설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">Because there are many things to do. I can eat ramen, and TV show in the hotel, or I go to aqurium to see cool fish.</td><td class="corrected-sentence">My favorite place is Japan <strong>because</strong> there are many things to do. I <strong>could</strong> eat ramen and <strong>watch TV shows</strong> in the hotel, or I <strong>could</strong> go to <strong>the aquarium</strong> to see cool fish.</td><td>'Because'는 문장 맨 앞에 혼자 쓸 수 없어요. 앞 문장과 합쳐줘야 해요. 과거 이야기니까 'can' 대신 'could'를 쓰고, 'aquarium'의 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">First, I go to market to eat ramen. And my family buy me a hat dog.</td><td class="corrected-sentence">First, I <strong>went</strong> to <strong>the</strong> market to eat ramen, and my family <strong>bought</strong> me a <strong>hot dog</strong>.</td><td>과거에 일어난 일이니까 동사는 'went'와 'bought'를 써야 해요. 'hot dog'은 두 단어랍니다.</td></tr>
+                            <tr><td class="original-sentence">And I eat ramen in the hotel, and watch TV Show. It was so relaxing!</td><td class="corrected-sentence">And I <strong>ate</strong> ramen in the hotel and <strong>watched TV shows</strong>. It was so relaxing!</td><td>'eat'의 과거는 'ate', 'watch'의 과거는 'watched'예요. 과거 시제로 통일해줘야 해요.</td></tr>
+                            <tr><td class="original-sentence">The Next day, I go to aqurium And I saw a cool fish. there are prihanas, whale sharks.</td><td class="corrected-sentence">The next day, I <strong>went</strong> to <strong>the aquarium</strong> and I saw a cool fish. There <strong>were piranhas</strong> and whale sharks.</td><td>과거 이야기니까 'went'를 써야 해요. 여러 마리니까 'There were'가 맞아요. 'piranhas' 철자도 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">at the aquirium my parents brought me a ice cream it was so good!</td><td class="corrected-sentence">At the <strong>aquarium</strong>, my parents <strong>bought</strong> me an ice cream, and it was so good!</td><td>'bought'는 '사주셨다'라는 뜻이에요. 'ice cream' 앞에는 'an'을 써요.</td></tr>
+                             <tr><td class="original-sentence">last, I go to toy store and there are lots of toys and dolls, and I bay a cute cinnamorol.</td><td class="corrected-sentence"><strong>Lastly</strong>, I <strong>went</strong> to <strong>a</strong> toy store. There <strong>were</strong> lots of toys and dolls, and I <strong>bought</strong> a cute <strong>Cinnamoroll</strong>.</td><td>과거 시제 'went', 'were', 'bought'를 사용해야 해요. 캐릭터 이름 'Cinnamoroll'은 대문자로 시작해요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 2: 어휘 선택 및 문장 흐름 교정</h4>
+                <p class="text-gray-600"><strong>반복 및 어색한 표현 (Repetition & Awkward Phrasing):</strong> 'ramen'이라는 단어가 짧은 구간에 세 번 반복됩니다. 'I go to aqurium to see cool fish' 처럼, 사건을 단순히 나열하는 문장이 많아 글이 단조롭게 느껴집니다. 글 전체의 흐름이 시간 순서에 따른 일기 형식에 가깝습니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 글을 구조적으로 바꾸는 연습이 필요합니다. 'First' 다음에는 시간 순서가 아닌, 일본이 좋은 첫 번째 '이유'를 설명해야 합니다. 예를 들어, "First, I loved Japan because of the delicious food." 라고 시작한 뒤, 라멘과 핫도그 이야기를 그 문단 안에서 자세히 설명하는 방식으로 바꾸어야 합니다.</p>
+            </div>
+
+            <div class="correction-step">
+                <h4>Step 3: 최종 교정 에세이 (Final Corrected Essay)</h4>
+                <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 엄격한 에세이 형식 기준에 맞춰 재구성한 모델 에세이입니다. 학생의 원본 글에서 변경되거나 추가된 부분은 <strong>굵은 글씨</strong>로 표시했습니다.</p>
+                <div class="final-essay">
+                    <strong>My Favorite Trip to Japan</strong><br><br>
+                    My favorite place <strong>that I have ever visited</strong> is Japan. <strong>I love Japan because it has delicious food, an amazing aquarium, and fun toy stores.</strong><br><br>
+                    First, <strong>I loved all the delicious food in Japan.</strong> I <strong>went</strong> to <strong>a</strong> market to eat ramen, and my family <strong>bought</strong> me a <strong>hot dog</strong>. Later, I <strong>ate</strong> more ramen in the hotel and <strong>watched TV shows</strong>. It was so relaxing and the food was delicious.<br><br>
+                    Second, <strong>I enjoyed the aquarium because I saw many cool sea animals.</strong> I saw <strong>piranhas</strong> and even huge whale sharks. It was so cool! After looking at the fish, my parents <strong>bought</strong> me an ice cream, and it was so good.<br><br>
+                    <strong>Finally</strong>, I <strong>had fun shopping at the toy store.</strong> There <strong>were</strong> lots of toys and dolls, and I <strong>bought</strong> a cute <strong>Cinnamoroll</strong> doll. It was the perfect souvenir to remember my trip.<br><br>
+                    In conclusion, <strong>I loved my trip to Japan for many reasons. Eating tasty food, seeing amazing fish, and buying a cute doll were my favorite parts.</strong> I really want to go again!
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 이유진 (Jin) 학생.</h4>
+                <p>유진 학생, 안녕하세요!</p>
+                <p class="mt-4">일본 여행에 대한 글, 정말 재미있게 읽었어요! 라멘과 핫도그, 피라냐와 고래상어, 그리고 귀여운 시나모롤 인형까지! 유진 학생이 일본에서 얼마나 신나고 행복한 시간을 보냈는지 글을 통해 생생하게 느껴졌어요. 이렇게 자신의 경험을 구체적으로 기억하고 글로 쓰는 능력은 정말 칭찬해주고 싶어요.</p>
+                <p class="mt-4">유진 학생의 글은 재미있는 모험 이야기 같아요. 이제 그 이야기를 더 멋지게 전달할 수 있는 비밀 방법을 하나 알려줄게요. 바로 **'시간 순서'가 아니라 '이유 순서'로 글을 정리하는 거예요.**</p>
+                <p class="mt-4">다음 글을 쓸 때는, 글을 세 개의 보물 상자로 나누어 보세요. 첫 번째 상자에는 '맛있는 음식 이야기'만 담는 거예요. (예: "첫째, 저는 맛있는 음식이 많아서 일본이 좋아요. 시장에서 라멘도 먹고 호텔에서도 먹었어요.") 두 번째 상자에는 '신기한 동물 이야기'를, 세 번째 상자에는 '재미있는 장난감 이야기'를 담는 거죠. 이렇게 이유별로 이야기를 정리하면, 유진 학생의 글이 훨씬 더 명확하고 힘 있는 '에세이'처럼 보일 거예요. 꼭 한번 시도해보세요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
