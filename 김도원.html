@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* 보라색 계열 */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table-container {
+             overflow-x: auto;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>김도원 (Dowon) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 에세이 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 에세이 (Student's Original Essay)
+            </h3>
+            <div class="original-essay">
+What is your favorite season? My favorite season is winter. I will tell you why it is my best season.
+First we can make snow angels. It is like a magic. It is very good to mak snow angels. We can make it silly, crazy, funny, and awesome.
+Next we can make many ice cream. We can make it like this. But milk, choco, and put of insredian. They there will be delicous ice cream. It is winter so it won't molt. We can even eat it out side! We can even put banina, strawbery and nut. That would be a very good thing, it wo be all of this.
+Last we can make a snowman. We can even make a groot or we can cah roll a big and small balls. We can make the small one on the big one. Then or make brother small one and put it on me.
+To concluse, that is why I like winter. What is your favorite season?
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>이 글은 에세이 형식입니다. 서론에서 주제를 제시하고, 'First', 'Next', 'Last', 'To conclude'와 같은 명확한 전환어를 사용하여 서론-본론-결론의 구조를 체계적으로 갖추려고 노력한 점이 매우 훌륭합니다. 다만 서론에 주제문(Thesis Statement)이 부족하고, 본론의 각 문단이 완벽한 구조를 갖추지는 못했습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>겨울을 좋아하는 이유로 눈 천사, 아이스크림 만들기, 눈사람 만들기라는 세 가지 구체적인 근거를 제시했습니다. 특히 아이스크림을 만드는 방법에 대해 재료를 언급하고, 겨울이라 녹지 않아 밖에서 먹을 수 있다는 점까지 상세하게 설명한 부분이 매우 인상적입니다. 상상력이 풍부하고 내용을 구체화하는 능력이 뛰어납니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'awesome', 'delicious' 등 좋은 묘사 어휘를 사용하고, 문장 구조도 비교적 안정적입니다. 하지만 'insredian'(ingredient), 'concluse'(conclude)와 같은 철자 오류가 많고, 일부 문장에서 시제나 문법적 오류('it wo be all of this')가 발견되어 의미 전달을 방해합니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>7 / 12 (58%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'magic', 'silly', 'crazy', 'awesome', 'delicious' 등 감정과 상태를 풍부하게 묘사하는 G2 수준의 어휘를 적극적으로 사용하고 있습니다. 어휘 선택 능력이 뛰어나지만, 'ingredient'나 'conclude'와 같은 다소 어려운 단어의 철자에서 실수가 발견됩니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이미 좋은 단어들을 많이 알고 있으니, 글을 다 쓴 후에 철자가 헷갈리는 단어들을 사전으로 한 번씩 찾아보는 습관을 들이면 좋을 것 같아요. 어휘력을 더욱 뽐낼 수 있을 거예요!</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'We can make...' 와 같이 조동사 'can'을 활용한 문장을 잘 구사하고 있습니다. 하지만 'They there will be'와 같이 주어가 중복되거나, 'it wo be'처럼 시제가 불분명한 문장이 있어 문법적 정확성이 다소 부족합니다. G2 수준의 문법을 익히고 있는 단계입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 한 문장에는 주어를 한 번만 쓰는 연습을 해보세요. 그리고 글을 쓸 때 현재 시제('is', 'make')를 쓸지, 미래 시제('will be')를 쓸지 미리 정하고 일관성 있게 사용하면 글이 훨씬 더 깔끔해져요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'It is winter so it won't molt.' 와 같이 'so'를 사용하여 원인과 결과를 나타내는 복문(Complex Sentence)을 잘 사용하고 있습니다. 단순 문장 외에도 다양한 구조의 문장을 시도하는 점이 긍정적입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 지금도 잘하고 있지만, 'and', 'but', 'so' 외에도 'when', 'if' 같은 다양한 접속사를 사용해서 문장을 연결해보면 글의 흐름이 더 자연스러워지고 풍부해질 거예요.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 에세이의 3단 구조(서론-본론-결론)를 명확히 이해하고 있으며, 각 부분을 연결하는 전환어를 매우 효과적으로 사용했습니다. 이는 G2 학생에게서 보기 드문 뛰어난 능력입니다. 다만, 서론에 글 전체의 핵심 주장을 요약하는 주제문(Thesis Statement)을 추가하면 더욱 완벽한 구조가 될 것입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 서론의 마지막 문장에 "나는 ~한 이유들 때문에 겨울을 가장 좋아합니다." 와 같이 앞으로 본론에서 말할 내용을 미리 살짝 알려주는 '주제문'을 추가하는 연습을 해보세요. 글 전체의 내비게이션 역할을 해줄 거예요!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Essay Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">It is like a magic.</td><td class="corrected-sentence">It is like magic.</td><td>'magic'은 셀 수 없는 명사라서 앞에 'a'를 붙이지 않아요.</td></tr>
+                            <tr><td class="original-sentence">But milk, choco, and put of insredian.</td><td class="corrected-sentence">We can <strong>add</strong> milk, <strong>chocolate</strong>, and <strong>other ingredients</strong>.</td><td>재료들을 '넣는다'는 의미로 'add'라는 동사가 필요해요. 'choco'는 'chocolate'으로, 'insredian'은 'ingredients'로 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">They there will be delicous ice cream.</td><td class="corrected-sentence"><strong>Then, there</strong> will be delicious ice cream.</td><td>'그 다음에'는 'Then', '거기에'는 'there'예요. 주어가 두 번 들어가지 않도록 'They'는 빼주는 게 좋아요. 'delicious' 철자도 확인!</td></tr>
+                            <tr><td class="original-sentence">It is winter so it won't molt.</td><td class="corrected-sentence">It is winter, so it won't <strong>melt</strong>.</td><td>아이스크림이 녹는 것은 'molt'(털갈이하다)가 아니라 'melt'예요. 발음이 비슷해서 헷갈릴 수 있어요.</td></tr>
+                            <tr><td class="original-sentence">We can even put banina, strawbery and nut.</td><td class="corrected-sentence">We can even put <strong>in bananas</strong>, <strong>strawberries</strong>, and <strong>nuts</strong>.</td><td>재료 이름들의 철자를 고쳤어요. 여러 개를 넣을 수 있으니 복수형(-s)으로 써주는 게 더 자연스러워요.</td></tr>
+                             <tr><td class="original-sentence">it wo be all of this.</td><td class="corrected-sentence">That would be <strong>so much fun</strong>.</td><td>'아주 재미있을 것이다'라는 뜻을 더 명확하게 전달하기 위해 문장을 다듬었어요.</td></tr>
+                            <tr><td class="original-sentence">we can cah roll a big and small balls.</td><td class="corrected-sentence">we can <strong>also</strong> roll a big and small <strong>snowballs</strong>.</td><td>'또한'이라는 뜻의 'also'를 넣어주면 흐름이 자연스러워요. 겨울 이야기니까 그냥 'ball'보다는 'snowball'이 더 좋겠네요.</td></tr>
+                             <tr><td class="original-sentence">To concluse, that is why I like winter.</td><td class="corrected-sentence">To <strong>conclude</strong>, that is why I like winter.</td><td>'결론적으로'라는 뜻의 단어는 'conclude'예요. 철자가 조금 어려우니 잘 기억해두세요!</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 최종 교정 에세이 -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                최종 교정 에세이 (Final Corrected Essay)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 엄격한 에세이 형식 기준에 맞춰 재구성한 모델 에세이입니다. 학생의 원본 글에서 변경되거나 추가된 부분은 <strong>굵은 글씨</strong>로 표시했습니다.</p>
+            <div class="final-essay">
+                <strong>Why Winter is the Best Season</strong><br><br>
+                What is your favorite season? For me, my favorite season is winter. <strong>I believe winter is the best season because it allows for magical outdoor activities like making snow angels, homemade ice cream, and creative snowmen.</strong><br><br>
+                First, we can make snow angels. <strong>Lying down in the fresh, soft snow and waving my arms and legs feels</strong> like magic. It is very fun to make snow angels because we can make them in silly, crazy, or funny shapes. <strong>Each one looks awesome and unique.</strong><br><br>
+                Next, we can make <strong>our own special</strong> ice cream. We can <strong>add</strong> milk, <strong>chocolate</strong>, and other <strong>ingredients</strong>. <strong>Then, we will have</strong> delicious ice cream! Because it is winter, it won't <strong>melt</strong> quickly. We can even eat it outside! We can also add toppings like <strong>bananas</strong>, <strong>strawberries</strong>, and <strong>nuts</strong>. That would be a very good treat.<br><br>
+                Last, we can make a snowman. We can roll big and small <strong>snowballs</strong> to build a classic snowman, or we can even make a snow-Groot! We can make the small snowball for the head and put it on the big one for the body. <strong>We could even make a small snowman to be my little brother.</strong><br><br>
+                To <strong>conclude</strong>, making angels, ice cream, and snowmen are the reasons why I like winter so much. It is a season full of fun and creativity. What is your favorite season?
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 김도원 (Dowon) 학생에게</h4>
+                <p>도원 학생, 안녕하세요!</p>
+                <p class="mt-4">겨울을 좋아하는 이유에 대해 쓴 글, 정말 재미있게 읽었어요. 눈 천사를 만들고, 직접 아이스크림을 만들고, 눈사람을 만드는 상상을 하니 선생님도 덩달아 신이 났어요. 특히 겨울이라 아이스크림이 녹지 않아 밖에서 먹을 수 있다는 생각은 정말 기발해요! 도원 학생은 글의 뼈대를 잡는 '설계사'와 같은 재능을 가지고 있어요.</p>
+                <p class="mt-4">이미 훌륭한 설계도를 가지고 있으니, 이제 집을 더 튼튼하게 만드는 방법을 알려줄게요. 바로 **'주제문(Thesis Statement)'이라는 기둥 세우기**예요.</p>
+                <p class="mt-4">다음 글을 쓸 때는, 서론의 마지막에 **"나는 A, B, C와 같은 이유 때문에 겨울을 가장 좋아합니다."** 와 같이 앞으로 본론에서 이야기할 내용을 미리 요약해서 알려주는 한 문장을 추가해보세요. 이 '주제문'은 독자들이 앞으로 어떤 이야기가 나올지 기대하게 만들고, 글 전체를 단단하게 잡아주는 아주 중요한 기둥이 될 거예요. 도원 학생은 이미 글의 순서를 잘 알고 있으니, 이 기둥만 세우면 훨씬 더 전문가다운 글을 쓸 수 있을 거예요!</p>
+                 <p class="mt-4">풍부한 상상력과 체계적인 구성 능력은 도원 학생의 큰 장점이에요. 앞으로도 그 장점을 살려 더 멋진 글을 많이 보여주세요. 응원하겠습니다!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
