@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Story Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* 보라색 계열 */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table-container {
+             overflow-x: auto;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Story Evaluation</h1>
+            <p>김원우 (Josh) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 스토리 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 스토리 (Student's Original Story)
+            </h3>
+            <div class="original-essay">
+One day, I was sleeping when something as soft as cotton tickled my foot. I woke up, and I newd that my leg was furry. I saw that I was a cat. lucky I can do soft and flexible things I like sqeeze into places.
+First, I tipped may dal fish. We could eat lot for diner. Then, I decided to pull a prank. While my mom was eating, I wiggled my tail on her laugh of, and laughed more when she saw it was me.
+Then, after a few weeks, I saw I ausdn't resbring.
+I paniced. I didn't know what to do. I went out and searched until it was night. I had no luck. Then, I had a magnificent idea. I make a really cat face at the moon. The moon gt
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 0118 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>이 글은 스토리 형식입니다. 고양이로 변하고(Beginning), 엄마에게 장난을 치다가 다시 사람으로 돌아오지 못하는 문제에 직면하고(Rising Action), 달에게 소원을 비는(Climax) 이야기의 흐름이 명확합니다. 시간의 흐름에 따라 사건을 잘 배열했지만, 이야기가 갑작스럽게 끝나 결말(End)이 없어 아쉽습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>'솜처럼 부드러운 무언가'라는 비유로 시작하는 도입부가 매우 인상적입니다. 엄마에게 꼬리로 장난을 치는 장면, 사람으로 돌아오지 못해 당황하는 감정, 달에게 소원을 비는 창의적인 해결책 등 구체적인 묘사와 감정 표현이 이야기를 풍부하고 재미있게 만듭니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'as soft as cotton', 'flexible', 'prank', 'wiggled', 'panicked', 'magnificent' 등 G3 이상의 수준 높은 어휘를 사용하고, 'when', 'while' 등을 사용한 복문 구성 능력도 뛰어납니다. 그러나 과거 시제 불일치('I make'), 철자 오류('newd', 'sqeeze', 'diner') 등 문법적 정확성이 부족하여 점수가 감점되었습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>8 / 12 (67%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'tickled', 'furry', 'flexible', 'prank', 'wiggled', 'panicked', 'searched', 'magnificent' 등 G3 수준 이상의 생생하고 표현력이 풍부한 어휘를 자유자재로 사용합니다. 어휘 선택 능력이 매우 뛰어나 이야기의 수준을 한 단계 높여주고 있습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이미 뛰어난 어휘력을 가지고 있으니, 앞으로는 글의 분위기에 맞는 더 다양한 단어들을 찾아보는 것도 재미있을 거예요. 예를 들어, 밤에 무언가를 찾을 때 'searched' 대신 'hunted for'나 'scoured' 같은 단어를 쓰면 더 긴장감 있는 분위기를 만들 수 있답니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 대부분의 문장을 과거 시제로 일관성 있게 작성하려는 노력이 보입니다. 하지만 'I newd', 'I make'와 같이 일부 동사의 과거형 사용에 실수가 있고, 시제가 혼합되어 사용되는 부분('I saw I ausdn't resbring')이 있어 문법적 정확성이 다소 부족합니다. G2-G3 수준의 문법을 익히는 단계에 있습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 과거에 일어난 일을 이야기할 때는 모든 동사를 과거형으로 바꾸는 연습에 집중하는 것이 중요해요. 특히 'know-knew', 'make-made'와 같은 불규칙 동사들을 다시 한번 복습하면 글이 훨씬 더 정확해질 거예요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'One day, I was sleeping when...', 'While my mom was eating...' 등 과거진행형을 포함한 복잡한 문장(Complex Sentence)을 능숙하게 사용하여 시간적 배경과 동시 상황을 효과적으로 묘사했습니다. 문장 구성 능력이 매우 뛰어나며, G3 이상의 수준을 보여줍니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 문장 구조를 만드는 능력은 이미 작가 수준이에요! 한 가지 더 도전해본다면, 문장의 길이를 다양하게 조절해보는 거예요. 긴 문장으로 상황을 자세히 묘사하다가, "I panicked." 처럼 짧은 문장을 사용하면 긴장감을 높이는 효과를 줄 수 있답니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Story Structure (스토리 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 기승전결(Beginning-Rising Action-Climax)이 뚜렷한 완성도 높은 스토리 구조를 보여줍니다. 특히 '사람으로 돌아오지 못한다'는 갈등(Problem)을 제시하고, '달에게 소원을 빈다'는 창의적인 해결책(Solution)으로 나아가는 과정이 매우 논리적이고 흥미롭습니다. 뛰어난 스토리텔링 능력을 갖추고 있습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이야기의 결말을 완성하는 연습이 필요해요. '달이 소원을 들어주었을까?', '그래서 나는 어떻게 되었을까?' 처럼 마지막 사건의 결과를 보여주는 '결말(Ending)' 부분을 추가하면 이야기가 완벽하게 마무리될 거예요. 독자들이 가장 궁금해하는 부분이랍니다!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Story Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">I newd that my leg was furry.</td><td class="corrected-sentence">I <strong>knew</strong> that my leg was furry.</td><td>'알았다'는 'know'의 과거형인 'knew'라고 써요. 발음은 같지만 철자가 달라요.</td></tr>
+                            <tr><td class="original-sentence">lucky I can do soft and flexible things I like sqeeze into places.</td><td class="corrected-sentence"><strong>Luckily,</strong> I <strong>could</strong> do soft and flexible things. I <strong>liked to squeeze</strong> into places.</td><td>'운 좋게도'는 'Luckily'라고 써요. 과거 이야기니까 'can' 대신 'could', 'like' 대신 'liked'를 써야 해요. 'squeeze'의 철자도 확인해주세요.</td></tr>
+                            <tr><td class="original-sentence">First, I tipped may dal fish. We could eat lot for diner.</td><td class="corrected-sentence">First, I tipped <strong>over my dad's</strong> fish. We could eat <strong>a</strong> lot for <strong>dinner</strong>.</td><td>'may dal fish'는 아마 '아빠의 물고기'를 말하려 한 것 같아요. 'a lot'과 'dinner'의 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">I wiggled my tail on her laugh of, and laughed more when she saw it was me.</td><td class="corrected-sentence">I wiggled my tail on her <strong>lap</strong>, and <strong>she</strong> laughed more when she saw it was me.</td><td>'무릎'은 'lap'이라고 써요. 엄마가 웃으신 거니까 주어는 'she'가 되어야 해요.</td></tr>
+                            <tr><td class="original-sentence">Then, after a few weeks, I saw I ausdn't resbring.</td><td class="corrected-sentence">Then, after a few weeks, I saw I <strong>couldn't turn back</strong>.</td><td>의미가 불분명해서 '다시 돌아갈 수 없다는 것을 알았다'는 뜻으로 고쳐봤어요.</td></tr>
+                             <tr><td class="original-sentence">I paniced.</td><td class="corrected-sentence">I <strong>panicked</strong>.</td><td>'panicked'는 과거형으로 쓸 때 'k'를 붙여줘야 해요. 철자가 조금 특별한 단어예요.</td></tr>
+                             <tr><td class="original-sentence">I make a really cat face at the moon. The moon gt</td><td class="corrected-sentence">I <strong>made</strong> a really <strong>sad</strong> cat face at the moon. <strong>Then, the moon began to glow.</strong></td><td>과거 이야기니까 'make' 대신 'made'를 써야 해요. 이야기가 더 재미있어지도록 'sad'라는 감정을 추가하고, 뒷부분을 상상해서 이어봤어요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 최종 교정 스토리 -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                최종 교정 스토리 (Final Corrected Story)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 문법과 철자를 수정하고 이야기의 결말을 추가하여 완성된 모델 스토리입니다.</p>
+            <div class="final-essay">
+                <strong>The Cat Who Wished Upon the Moon</strong><br><br>
+                One day, I was sleeping when something as soft as cotton tickled my foot. I woke up and <strong>knew</strong> that my leg was furry. I saw that I was a cat! <strong>Luckily,</strong> I <strong>could</strong> do soft and flexible things, and I <strong>liked to squeeze</strong> into tiny places.<br><br>
+                First, I decided to play a prank. I tipped over my dad's fishbowl. We could eat a lot for <strong>dinner</strong> that night! Then, while my mom was eating, I wiggled my tail on her <strong>lap</strong>. <strong>She</strong> laughed when she saw it was me, a little cat.<br><br>
+                But after a few weeks, I realized I <strong>couldn't turn back</strong> into a boy. I <strong>panicked</strong>! I didn't know what to do. I went out and searched for a way to change back until it was night, but I had no luck.<br><br>
+                Then, I had a magnificent idea. I looked up at the big, bright moon. I <strong>made</strong> a really sad cat face at the moon and meowed with all my heart. <strong>Suddenly, the moon began to glow brightly. A soft light came down and wrapped around me. When the light faded, I was a boy again! I was so happy that I shouted for joy. Being a cat was fun, but being me is the best.</strong>
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 김원우 (Josh) 학생에게</h4>
+                <p>원우 학생, 안녕하세요!</p>
+                <p class="mt-4">고양이가 되어 겪는 하루에 대한 이야기, 정말 대단했어요! '솜처럼 부드러운 무언가'라는 비유로 시작하는 첫 문장부터 선생님은 이야기에 푹 빠져들었답니다. 엄마에게 장난치는 귀여운 모습, 다시 사람으로 돌아가지 못해 당황하는 모습, 그리고 달에게 소원을 비는 기발한 생각까지, 모든 장면이 생생하게 그려졌어요. 원우 학생은 정말 뛰어난 스토리텔러예요!</p>
+                <p class="mt-4">원우 학생은 이미 훌륭한 작가의 자질을 갖추고 있어요. 이제 그 재능을 더욱 빛나게 해 줄 한 가지 비밀을 알려줄게요. 바로 **'마무리 도장 찍기'**예요. 지금 원우 학생의 이야기는 가장 흥미진진한 순간에 "다음 화에 계속!" 하고 끝나는 드라마 같아요. 독자들은 '그래서 달이 소원을 들어주었을까?'하고 정말 궁금해할 거예요.</p>
+                <p class="mt-4">다음 글을 쓸 때는, 이야기의 **'결말(Ending)'**을 꼭 만들어주세요. 주인공이 겪은 사건이 어떻게 마무리되었는지, 그리고 그 사건을 통해 주인공이 무엇을 느끼거나 배우게 되었는지를 보여주는 거예요. 이 '마무리 도장'을 꽝 찍어주면, 독자들은 만족스러운 마음으로 책을 덮을 수 있답니다.</p>
+                 <p class="mt-4">풍부한 어휘력과 뛰어난 이야기 구성 능력은 원우 학생의 아주 특별한 재능이에요. 앞으로 그 재능으로 또 어떤 멋진 이야기들을 들려줄지 정말 기대돼요. 항상 응원하겠습니다!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
