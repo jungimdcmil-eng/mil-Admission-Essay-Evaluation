@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Story Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* 보라색 계열 */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table-container {
+             overflow-x: auto;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Story Evaluation</h1>
+            <p>이준우 (Alex) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 스토리 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 스토리 (Student's Original Story)
+            </h3>
+            <div class="original-essay">
+One day when I was sleeping, my dad and my mom said, "There is an animal on the chair." I woke up. I said, "where is the animal?" Then mom said, "Ah! The animal is standing and speaking!" And they ran away into my friend's house. I was confused and looked at the mirror. I was an animal! But I didn't know what animal was it. And my mom and dad said to my friend and friend mom, "There's an animal. Expect Alex!" So they looked at the window but I was looking my friend. my friend mom, my mom and dad, so they were surprised. So they hide.
+When they hide at me, I was sad. So I went to the playground and played. But all the person hide when I said play with me. Other kids said "I don't like you."
+Second thing that I did is to play with my friend. Yena But Yena ran away. I was really sad. I was an animal. So I searched this animal. It was a cheetah.
+Third, I went to the climbing but all the people and children ran away to there home. I was sad.
+Fourth, went to my friend's house and I had to find them. I found Mater in the couch. it was my friend. But he ran away to my home. And I found my mom in John's bed. I hug my mom but mom punched me and ran to my house. I found friend's mom and my dad at once. They were between the toys.
+At the end, I was bored and when I went for brushing my teeth, I looked at the mirror and saw my reflection and it was me. So I noticed I am real. Then I hugged my mom and my mom said, "Where were you?" "I was an animal." So I was happy to meet my mom.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>이 글은 스토리 형식입니다. 동물로 변하고(Beginning), 주변 사람들이 모두 도망가서 슬픔을 느끼며 정체를 찾아 헤매고(Rising Action), 거울을 보고 다시 사람으로 돌아온 것을 확인하는(Climax/End) 이야기의 흐름이 매우 뚜렷하고 잘 구성되어 있습니다. 기승전결 구조를 명확하게 이해하고 있습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>주인공이 동물로 변한 후 겪는 외로움과 슬픔이라는 감정선이 이야기 전체를 관통하며 독자의 몰입을 높입니다. 놀이터, 친구 집 등 여러 장소를 이동하며 겪는 반복적인 거절은 주인공의 슬픔을 점차 고조시키는 효과적인 장치입니다. 자신이 '치타'였다는 것을 깨닫는 부분도 흥미롭습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'confused', 'surprised', 'sad', 'bored', 'happy' 등 감정을 나타내는 다양한 어휘를 사용하고, 대화문을 활용하여 생동감을 더했습니다. 그러나 과거 시제 불일치('they hide'), 불완전한 문장, 그리고 문법 오류('what animal was it')가 많아 문장의 정확성을 높일 필요가 있습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>8 / 12 (67%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'confused', 'surprised', 'sad', 'bored', 'happy', 'reflection' 등 감정과 상황을 묘사하는 G2 수준의 다양한 어휘를 사용합니다. 어휘력이 이야기의 감정선을 전달하는 데 큰 도움이 되고 있습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이미 감정 어휘를 잘 사용하고 있으니, 이제 행동을 묘사하는 동사를 더 다양하게 사용해보면 어떨까요? 예를 들어, 'ran away' 대신 'dashed away'나 'fled' 같은 단어를 쓰면 더 생생한 느낌을 줄 수 있어요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'When I was sleeping...'과 같이 과거진행형을 사용하는 등 G2 수준의 문법 지식을 보여줍니다. 하지만 과거 시제 동사를 현재 시제와 혼용하는('they hide') 실수가 잦고, 간접의문문('I didn't know what animal it was')의 어순에 대한 이해가 부족합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 과거에 일어난 일을 이야기할 때는 모든 동사를 과거형으로 써야 한다는 '시제 일치' 규칙을 기억하는 것이 중요해요. 글을 다 쓴 후에 동사들만 쭉 살펴보면서 현재 시제로 잘못 쓴 것이 없는지 확인하는 습관을 들이면 큰 도움이 될 거예요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'When...', 'But...', 'So...' 등 다양한 접속사를 사용하여 문장을 연결하고 있으며, 이는 글의 논리적인 흐름을 만드는 데 기여합니다. 단순 문장과 복문을 적절히 섞어 사용하는 능력이 있습니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 문장 연결 능력이 좋아요! 한 단계 더 나아가려면, 'and'의 사용을 조금 줄여보는 연습을 해보세요. 대신, 두 문장을 하나로 합치거나 더 적절한 접속사를 찾아보면 글이 더욱 세련되어 보일 수 있습니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Story Structure (스토리 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> '동물로 변함' (문제 발생) -> '모두가 나를 피함' (갈등 심화) -> '나의 정체를 찾으려 함' (노력) -> '원래 모습으로 돌아옴' (문제 해결)으로 이어지는 기승전결이 매우 뚜렷한, 완성도 높은 스토리 구조를 갖추고 있습니다. G3 수준의 뛰어난 스토리텔링 능력입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 이미 이야기의 뼈대를 만드는 능력이 탁월해요! 이제 각 장면에 살을 붙여 더 풍부하게 만드는 연습을 해보면 좋을 것 같아요. 예를 들어, 사람들이 나를 보고 도망갈 때 어떤 표정을 지었는지, 어떤 소리를 질렀는지 더 자세하게 묘사하면 독자들이 더 실감 나게 느낄 수 있을 거예요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Story Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">But I didn't know what animal was it.</td><td class="corrected-sentence">But I didn't know what animal <strong>it was</strong>.</td><td>'what animal'처럼 질문하는 말이 문장 중간에 들어갈 때는 주어(it)와 동사(was)의 순서를 바꾸지 않아요.</td></tr>
+                            <tr><td class="original-sentence">And my mom and dad said to my friend and friend mom, "There's an animal. Expect Alex!"</td><td class="corrected-sentence">And my mom and dad said to my friend and <strong>her</strong> mom, "There's an animal, <strong>not</strong> Alex!"</td><td>의미가 더 명확해지도록 'Alex가 아니라 동물이야!'라는 뜻으로 고쳤어요. 'friend's mom'이라고 쓰는 것이 더 자연스러워요.</td></tr>
+                            <tr><td class="original-sentence">When they hide at me, I was sad.</td><td class="corrected-sentence">When they <strong>hid from</strong> me, I was sad.</td><td>'hide'의 과거형은 'hid'예요. '~로부터' 숨는 것이니 'at' 대신 'from'을 써요.</td></tr>
+                            <tr><td class="original-sentence">But all the person hide when I said play with me.</td><td class="corrected-sentence">But all the <strong>people hid</strong> when I <strong>asked them to</strong> play with me.</td><td>여러 사람이니까 'person' 대신 'people'을 쓰고, 과거형 'hid'를 써야 해요. '~하자고 말했다'는 'asked them to'가 더 자연스러운 표현이에요.</td></tr>
+                            <tr><td class="original-sentence">Second thing that I did is to play with my friend.</td><td class="corrected-sentence">The second thing I did <strong>was</strong> to play with my friend, Yena.</td><td>과거에 한 일이니까 'is' 대신 'was'를 써야 해요.</td></tr>
+                             <tr><td class="original-sentence">Fourth, went to my friend's house and I had to find them.</td><td class="corrected-sentence">Fourth, I went to my friend's house and I had to find them.</td><td>문장 맨 앞에 주어 'I'가 빠졌어요. 누가 갔는지 꼭 써줘야 해요.</td></tr>
+                            <tr><td class="original-sentence">I hug my mom but mom punched me and ran to my house.</td><td class="corrected-sentence">I <strong>hugged</strong> my mom, but <strong>my</strong> mom punched me and ran to my house.</td><td>과거 이야기니까 동사는 과거형 'hugged'를 써야 해요. 'mom' 앞에 'my'를 붙여주면 더 명확해요.</td></tr>
+                             <tr><td class="original-sentence">At the end, I was bored and when I went for brushing my teeth, I looked at the mirror and saw my reflection and it was me.</td><td class="corrected-sentence">At the end, I was bored. When I went <strong>to brush</strong> my teeth, I looked at the mirror, saw my reflection, and <strong>realized</strong> it was me.</td><td>'양치하러'는 'to brush'가 더 자연스러워요. '깨달았다'는 의미의 'realized'를 추가하면 감정이 더 잘 전달돼요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 최종 교정 스토리 -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                최종 교정 스토리 (Final Corrected Story)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 문법과 철자를 수정하고 이야기의 흐름을 더 자연스럽게 다듬은 모델 스토리입니다.</p>
+            <div class="final-essay">
+                <strong>The Day I Was a Cheetah</strong><br><br>
+                One day when I was sleeping, my dad and my mom said, "There's an animal on the chair!" I woke up and asked, "Where is the animal?" Then mom said, "Ah! The animal is standing and speaking!" They ran away to my friend's house. I was confused and looked in the mirror. I was an animal! But I didn't know what animal <strong>it was</strong>.<br><br>
+                Everyone was scared of me. When they <strong>hid from</strong> me, I was sad. I went to the playground, but all the <strong>people hid</strong> when I asked them to play with me. Other kids said, "I don't like you." The second thing I did <strong>was</strong> try to play with my friend, Yena, but she ran away too. I was really sad. I was an animal, so I searched for information about "this animal." I found out it was a cheetah.<br><br>
+                I felt lonely. I went to my friend's house to find my family. I found my mom on John's bed. I <strong>hugged</strong> my mom, but she punched me and ran back to my house! I felt so sad and alone.<br><br>
+                At the end of the day, I was bored. When I went <strong>to brush</strong> my teeth, I looked in the mirror. I saw my reflection and <strong>realized</strong> it was me again! I was a real boy. I ran and hugged my mom, and my mom said, "Where were you?" I told her, "I was an animal." I was so happy to be with my mom again.
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 이준우 (Alex) 학생에게</h4>
+                <p>준우 학생, 안녕하세요!</p>
+                <p class="mt-4">어느 날 갑자기 치타로 변해버린 소년의 이야기를 정말 감동적으로 읽었어요. 모두가 나를 피해서 슬퍼하고 외로워하는 주인공의 마음에 선생님도 가슴이 찡했답니다. 이야기의 시작부터 끝까지 주인공의 감정 변화를 따라가다 보니, 마지막에 엄마와 다시 만났을 때 정말 큰 안도감이 느껴졌어요. 이렇게 독자의 마음을 움직이는 글을 쓰다니, 정말 대단해요!</p>
+                <p class="mt-4">준우 학생은 이미 이야기의 기승전결을 만드는 능력이 탁월한 '스토리 마법사' 같아요. 이제 그 마법을 더 강력하게 만들어 줄 주문을 하나 알려줄게요. 바로 **'시제 일치 마법'**이에요!</p>
+                <p class="mt-4">다음 글을 쓸 때는, 이미 일어난 과거의 일을 이야기하고 있으니 모든 동사를 과거형으로 써주는 것에 집중해보세요. 예를 들어, 사람들이 숨었을 때 'hide'가 아니라 'hid'라고 쓰고, 엄마를 껴안았을 때 'hug'가 아니라 'hugged'라고 쓰는 거예요. 이 '시제 일치 마법'을 사용하면, 독자들이 이야기의 시간 속으로 더 깊이 빠져들게 만들 수 있답니다.</p>
+                 <p class="mt-4">탄탄한 스토리 구성 능력과 독자의 감성을 자극하는 표현력은 준우 학생의 아주 특별한 재능이에요. 앞으로도 그 재능을 마음껏 발휘해서 더 많은 사람들에게 감동과 재미를 주는 이야기를 들려주세요. 선생님이 언제나 준우 학생의 열렬한 팬이 되어 응원할게요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
