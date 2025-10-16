@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* 보라색 계열 */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table-container {
+             overflow-x: auto;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>윤채아 (Fluffy) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 에세이 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 에세이 (Student's Original Essay)
+            </h3>
+            <div class="original-essay">
+My favorite season is spring because it is warm and mild.
+First, the weather so warm and I like some flowers.
+Second, I don't have to wear thick clothes and I have to wear thin clothes, no sweaters.
+Finally I like play in playground because it is fun. And I can play and go to trip with my family. In spring, I can see some cute animals too. So I can play with my friends.
+My friends name is Ruby, Irene and Heny.
+This is my ECC Kindergarten.
+And I can go to shopping with my family because we have lots of money.
+At October 15th my favorite toy will come to my house.
+Yesterday, my friend broke his leg so I'm little bit sad.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Rubric Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>이 글은 에세이 형식이 아닙니다. 'First', 'Second', 'Finally'를 사용해 아이디어를 나열하려 했으나, 글의 주제인 '봄'과 관련 없는 친구 이름, 유치원, 쇼핑, 장난감, 다친 친구 이야기로 넘어가며 주제의 통일성을 완전히 잃었습니다. 글의 구조와 논리적 흐름에 대한 개념이 전혀 없습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>봄을 좋아하는 이유로 '따뜻한 날씨', '얇은 옷', '놀이터' 등을 언급했지만, 각 아이디어에 대한 설명이 전혀 없습니다. 왜 따뜻한 날씨가 좋은지, 얇은 옷을 입으면 기분이 어떤지 등에 대한 구체적인 묘사가 없어 아이디어가 전혀 발전되지 않았습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>기초적인 문장을 만들 수 있지만, 문법 및 철자 오류가 매우 심각합니다. 불완전한 문장('the weather so warm'), 잘못된 동사 형태('I like play'), 주어와 동사의 부재 등 기본적인 문장 구성 규칙을 지키지 못해 의미 전달이 어렵습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>3 / 12 (25%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                학생 역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 'warm', 'mild', 'flowers', 'clothes', 'playground', 'family', 'friends' 등 G1 수준의 매우 기본적인 일상 어휘를 사용하고 있습니다. 글의 주제를 풍부하게 표현하기에는 어휘의 양이 절대적으로 부족합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> '따뜻하다'는 'warm' 말고 'sunny'나 'cozy' 같은 다른 단어도 사용해보고, '꽃'도 그냥 'flowers'가 아니라 'roses', 'tulips'처럼 구체적인 이름을 영어로 배워보면 글이 훨씬 재미있어져요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 문장을 구성하는 능력이 매우 미흡합니다. 주어 또는 동사가 없는 불완전한 문장이 많고, 동사의 형태를 올바르게 사용하지 못합니다('I like play'). 가장 기초적인 문법 규칙부터 체계적인 학습이 필요합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 모든 문장에는 '누가(주어)'와 '~한다(동사)'가 꼭 필요하다는 것을 기억해야 해요. "The weather is warm." 처럼요. 그리고 'like'와 같은 동사 뒤에 또 다른 행동이 올 때는 'to'를 붙여서 'I like to play'라고 쓰는 연습을 해보세요.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 대부분의 문장이 짧은 단어들의 나열이며, 완전한 문장 구조를 갖추지 못한 경우가 많습니다. 문장을 연결하는 접속사의 사용이 거의 보이지 않습니다. 문장 구성의 기본 원리에 대한 이해가 필요합니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 먼저 'I like spring.' 처럼 짧더라도 완벽한 문장을 만드는 연습에 집중하세요. 그 후에 'and'나 'so'를 사용해서 두 문장을 이어보는 연습을 하는 것이 좋습니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 글의 주제를 정하고 그에 맞는 내용을 일관성 있게 쓰는 능력이 부족합니다. 글의 중반부터 주제와 전혀 관련 없는 내용으로 벗어나 글 전체의 통일성이 없습니다. 에세이 구조에 대한 개념이 전혀 없는 상태입니다.</p>
+                    <p><strong>제안 (Suggestions):</strong> 글을 쓰기 전에 '나는 오늘 봄에 대해서만 쓸 거야!'라고 스스로 약속하는 것이 중요해요. 친구 이야기나 장난감 이야기는 다음 글의 주제로 남겨두고, 정해진 주제에 대한 이야기만 끝까지 쓰는 연습을 해야 합니다. 이것이 좋은 글의 가장 중요한 첫걸음이에요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Essay Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 문법 및 철자 교정</h4>
+                <div class="correction-table-container">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Friendly Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">First, the weather so warm and I like some flowers.</td><td class="corrected-sentence">First, the weather <strong>is</strong> so warm, and I like <strong>the</strong> flowers.</td><td>문장에는 '~이다'라는 뜻의 동사 'is'가 꼭 필요해요. '몇몇' 꽃이 아니라 봄에 피는 '그' 꽃들을 좋아한다는 의미로 'the'를 썼어요.</td></tr>
+                            <tr><td class="original-sentence">Second, I don't have to wear thick clothes and I have to wear thin clothes, no sweaters.</td><td class="corrected-sentence">Second, I don't have to wear thick clothes like sweaters. I can wear thin clothes.</td><td>두꺼운 옷의 예시로 'like sweaters'라고 표현하는 게 더 자연스러워요. 문장을 두 개로 나누어 의미를 명확하게 했어요.</td></tr>
+                            <tr><td class="original-sentence">Finally I like play in playground because it is fun.</td><td class="corrected-sentence">Finally, I like <strong>to play in the</strong> playground because it is fun.</td><td>'like' 뒤에 또 다른 행동(play)이 올 때는 'to'를 붙여줘야 해요. '놀이터에서'는 'in the playground'라고 써요.</td></tr>
+                            <tr><td class="original-sentence">And I can play and go to trip with my family.</td><td class="corrected-sentence">And I can play and go <strong>on a</strong> trip with my family.</td><td>'여행을 가다'는 'go to trip'이 아니라 'go on a trip'이라고 표현해요. 자주 쓰는 표현이니 기억해두면 좋아요.</td></tr>
+                            <tr><td class="original-sentence">My friends name is Ruby, Irene and Heny.</td><td class="corrected-sentence">My friends' <strong>names are</strong> Ruby, Irene, and <strong>Henry</strong>.</td><td>친구가 여러 명이니까 'friend's'가 아니라 'friends''라고 써야 해요. 이름은 여러 개니까 'is' 대신 'are'를 써요.</td></tr>
+                             <tr><td class="original-sentence">Yesterday, my friend broke his leg so I'm little bit sad.</td><td class="corrected-sentence">Yesterday, my friend broke his leg, so I <strong>am a</strong> little bit sad.</td><td>'어제' 있었던 일이지만, 그 때문에 내가 '지금' 슬픈 것이므로 현재 시제 'am'을 쓰는 것이 맞아요. 'a little bit'이 올바른 표현이에요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 5: 최종 교정 에세이 -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                최종 교정 에세이 (Final Corrected Essay)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 글은 주제에서 벗어난 내용이 많아, '봄'이라는 주제에만 집중하여 에세이 형식으로 완전히 재구성한 모델 에세이입니다.</p>
+            <div class="final-essay">
+                <strong>Why I Love Spring</strong><br><br>
+                My favorite season is spring. I love this season for many reasons. <strong>I believe spring is the best season because the weather is warm and mild, and I can do many fun activities outside.</strong><br><br>
+                First, I love the warm weather in spring. The weather is so pleasant that I can see beautiful flowers everywhere. <strong>Seeing the colorful flowers makes me feel happy.</strong><br><br>
+                Second, I can wear comfortable clothes. I don't have to wear thick clothes like heavy sweaters anymore. Instead, I can wear thin and light clothes, which feels great after a long winter.<br><br>
+                Finally, I like to play outside in the spring because it is so fun. I can play in the playground with my friends. I can also see cute animals waking up from the winter. Best of all, I can go on trips with my family to enjoy the beautiful spring days.<br><br>
+                <strong>In conclusion, I love spring because of the warm weather, comfortable clothes, and fun outdoor activities. It is a season full of happiness and fun.</strong>
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>To. 윤채아 (Fluffy) 학생에게</h4>
+                <p>채아 학생, 안녕하세요.</p>
+                <p class="mt-4">좋아하는 계절인 봄에 대해 이야기해 줘서 고마워요. 따뜻한 날씨, 예쁜 꽃, 친구들과의 즐거운 시간까지, 채아 학생의 글을 읽으니 선생님도 봄이 기다려지는 기분이 들었어요.</p>
+                <p class="mt-4">하지만, 좋은 글을 쓰기 위해서는 한 가지 아주 중요한 약속을 지켜야 해요. 바로 **'주제에서 벗어나지 않기'**랍니다. 지금 채아 학생의 글은 '봄' 이야기로 시작했다가, 중간에 친구 이름, 유치원, 장난감, 다친 친구 이야기 등 여러 다른 길로 새고 있어요. 이것은 마치 목적지를 정해놓고 여행을 떠났는데, 중간에 다른 길로 빠져서 원래 가려던 곳에 도착하지 못하는 것과 같아요.</p>
+                <p class="mt-4">그래서 채아 학생의 가장 중요한 첫 번째 미션은 **'글의 주인공은 딱 하나!'**라고 정하는 거예요. 이번 글의 주인공이 '봄'이었다면, 글이 끝날 때까지 '봄'에 대한 이야기만 하는 거죠. 다른 재미있는 이야기들은 다음 글의 주인공으로 남겨두는 거예요. 글을 쓰기 전에 "나는 오늘 봄에 대해서만 쓸 거야!"라고 마음속으로 약속하고 시작하면 큰 도움이 될 거예요.</p>
+                 <p class="mt-4">하나의 주제에 집중하는 것은 좋은 글을 쓰기 위한 가장 기본적이고 중요한 훈련이에요. 다음번에는 하나의 주제로 꽉 찬, 멋진 글을 보여주길 기대하고 있을게요. 할 수 있어요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
