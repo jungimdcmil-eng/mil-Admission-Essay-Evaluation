@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* Purple Theme */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6; /* Purple Theme */
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6; /* Purple Theme */
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8404;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>김윤서 (Ellie) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 글 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 글 (Student's Original Writing)
+            </h3>
+            <div class="original-essay">
+Seasons change throught the year. There are four seasons. They are spring, summer, fall, and winter. But my favorite season is winter. winter is my favorite season because we can play many fun activities, is my birthday season, and we can celebrate Valentines Day, which is my favorite holiday.
+First, I like winter because we can play many fun activities. We can build a snowman. That's one idea for playig fun activities. Building a snowman has a few steps. I have also two more ideas. They are skiing and snowboarding. like many people I think skiing is easier than snowboarding.
+Second, I like winter because it is my birthday season. I know all of the birthday seasons in my family. My mom and sister's birthday season are the same. It is fall. In addition, my dad's birthday season is same as me, but the month is different. Mine is Felurary and my dad's is Janurary.
+Third, I like winter because there is Valentine's Day, which is my favorite holiday. Valentine's Day is the same season as mine, but that wishing date is different because mine is 24th and it's 14th.
+In conclusion, that is why I like winter because we can play many fun activities, is my birthday season, and there is valentine's Day, which is my favorite holiday.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 (Stricter Rubric Applied) -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Re-evaluated Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">4 / 4</span></td>
+                        <td>서론(Hook+Thesis), 본론(3개의 문단), 결론(Restatement+Summary)의 모든 필수 요소를 완벽하게 갖추고 있습니다. 주제문에서 제시한 세 가지 이유가 본론의 각 문단 주제와 정확히 일치하며, 결론에서 이를 다시 한번 요약하는 등 매우 모범적인 구조를 보여줍니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>주제문이 명확하고 세 가지 이유를 구체적으로 제시하여 매우 훌륭합니다. 본론의 각 문단이 주제문을 논리적으로 뒷받침합니다. '스키가 스노보드보다 쉽다고 생각한다', '가족들의 생일 계절' 등 개인적인 생각과 사실을 잘 결합했습니다. 다만, 각 활동에 대한 구체적인 경험 예시가 더해졌다면 최상위 수준의 글이 되었을 것입니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'throught', 'playig', 'seasch', 'Felurary', 'Janurary', 'Thild' 등 6개의 철자 오류와 주어-동사 불일치('sister's birthday season are'), 시제 오류('is same') 등 문법 오류를 포함하여 총 8개 미만의 실수가 발견됩니다. 따라서 2점으로 평가됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>9 / 12 (75%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 M21 21l-5.197-5.197" /></svg>
+                역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'celebrate', 'activities', 'snowboarding', 'in addition', 'different', 'conclusion' 등 G3 수준 이상의 다양한 어휘를 정확하게 사용합니다. 자신의 생각을 표현하는 데 적절한 단어를 선택하는 능력이 뛰어납니다.</p>
+                    <p><strong>강화 방안:</strong> 이미 뛰어난 어휘력을 갖추고 있으므로, 'fun activities' 대신 'exciting winter sports'나 'enjoyable pastimes'와 같이 같은 의미를 더 세련되게 표현하는 유의어 학습을 통해 표현력을 더욱 향상시킬 수 있습니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'which is my favorite holiday'와 같은 관계대명사절을 사용하여 문장을 확장하는 등 G3 수준 이상의 문법 구사 능력을 보여줍니다. 주어-동사 수일치와 같은 일부 실수가 있지만, 전반적인 문법 이해도는 매우 높습니다.</p>
+                    <p><strong>강화 방안:</strong> 글을 다 쓴 후, 주어가 단수인지 복수인지 확인하고 그에 맞는 동사를 썼는지 검토하는 습관을 들이면 사소한 실수를 줄일 수 있습니다. 예를 들어, 'My sister's birthday season'은 단수이므로 동사는 'is'가 되어야 합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 배경 정보로 시작하여 자신의 의견으로 좁혀가는 서론의 문장 구성, 그리고 'First, Second, Third'와 'In addition'과 같은 다양한 연결어를 사용하는 능력은 G3 이상의 매우 성숙한 글쓰기 능력을 보여줍니다.</p>
+                    <p><strong>강화 방안:</strong> 현재의 뛰어난 문장 구성 능력에 더해, 'Although I don't like the cold, I love winter because...' 와 같이 양보의 의미를 나타내는 접속사를 사용해보면 글의 논리가 더욱 정교해질 것입니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 에세이의 모든 구조적 요소를 완벽하게 이해하고 적용했습니다. 서론의 주제문(Thesis Statement)이 본론의 내용을 정확하게 예고하고, 본론의 각 문단이 그 순서를 충실히 따르며, 결론에서 이를 다시 한번 종합하는 능력은 교과서적인 모범 답안에 가깝습니다.</p>
+                    <p><strong>강화 방안:</strong> 현재 구조는 완벽합니다. 다음 단계는 각 본론 문단에 'For example'을 사용하여 자신의 실제 경험을 한두 문장 추가하는 연습입니다. 이를 통해 논리적인 구조에 생생한 현실감을 더할 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Detailed Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">Seasons change throught the year.</td><td class="corrected-sentence">Seasons change <strong>throughout</strong> the year.</td><td>'~동안 내내'라는 뜻의 'throughout' 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">That's one idea for playig fun activities.</td><td class="corrected-sentence">That's one idea for <strong>playing</strong> fun activities.</td><td>'playing'의 철자를 고쳤어요. 'y' 다음에 'i'가 오지 않아요.</td></tr>
+                            <tr><td class="original-sentence">Second, I like winter because it is my birthday seasch.</td><td class="corrected-sentence"><strong>Second,</strong> I like winter because it is my birthday <strong>season</strong>.</td><td>'Second'와 'season'의 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">My mom and sister's birthday season are the same.</td><td class="corrected-sentence">My mom and <strong>sister's</strong> birthday <strong>seasons are</strong> the same.</td><td>두 사람의 생일 계절이므로 'seasons' 복수형을 쓰고 동사도 'are'를 써야 해요. 하지만 한 명씩 말할 때는 단수를 써요. (My mom's season is fall. My sister's season is fall.)</td></tr>
+                            <tr><td class="original-sentence">...my dad's birthday season is same as me...</td><td class="corrected-sentence">...my dad's birthday season is <strong>the same as mine</strong>...</td><td>'~와 같다'는 'is the same as'라고 표현해요. '나의 것'은 'mine'이라고 써요.</td></tr>
+                            <tr><td class="original-sentence">Mine is Felurary and my dad's is Janurary.</td><td class="corrected-sentence">Mine is <strong>February,</strong> and my dad's is <strong>January</strong>.</td><td>'February'와 'January'의 정확한 철자예요. 달 이름은 항상 대문자로 시작해요.</td></tr>
+                             <tr><td class="original-sentence">Thild, I like winter because there is Valentine's Day...</td><td class="corrected-sentence"><strong>Third,</strong> I like winter because <strong>it has</strong> Valentine's Day...</td><td>'Third'의 철자를 고쳤어요. '겨울은 밸런타인데이를 가지고 있다'라는 의미로 'it has'가 더 자연스러워요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 5: 최종 교정 모델 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 18V7.125C4.5 6.504 5.004 6 5.625 6H9" /></svg>
+                최종 교정 모델 (Final Corrected Model)
+            </h3>
+            <div class="final-essay">
+                <strong><center>My Favorite Season: Winter</center></strong><br>
+                Seasons change <strong>throughout</strong> the year. There are four seasons: spring, summer, fall, and winter. My favorite season is winter. <strong>I believe winter is the best season because it has many fun activities, it is my birthday season, and it includes Valentine's Day, which is my favorite holiday.</strong><br><br>
+                First, I like winter because we can play many fun activities. <strong>For example,</strong> we can build a snowman in the backyard after it snows. We can also go skiing and snowboarding. Like many people, I think skiing is easier than snowboarding, but both are very exciting.<br><br>
+                Second, I like winter because it is my birthday <strong>season</strong>. My birthday is in <strong>February</strong>. In addition, my dad's birthday is also in winter; his is in <strong>January</strong>. It feels special to share my birthday season with my dad, while my mom and sister both have their birthdays in the fall.<br><br>
+                <strong>Third,</strong> I like winter because it has Valentine's Day. It is my favorite holiday because I love to exchange chocolates and cards with my friends at school. It is a day full of sweetness and friendship.<br><br>
+                In conclusion, that is why I like winter. <strong>It is full of exciting activities like skiing, special personal celebrations like my birthday, and lovely holidays like Valentine's Day.</strong>
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>김윤서 학생에게,</h4>
+                <p>안녕하세요, 윤서(Ellie) 학생!</p>
+                <p class="mt-4">겨울을 좋아하는 이유에 대해 쓴 글을 선생님이 정말 감탄하면서 읽었어요. 서론에서 '나는 세 가지 이유 때문에 겨울을 좋아해'라고 똑똑하게 계획을 발표하고, 본론에서 그 이유들을 하나씩 차근차근 설명한 뒤, 결론에서 다시 한번 멋지게 요약하는 모습은 거의 전문가 수준이었어요. <strong>이렇게 완벽한 구조로 글을 쓰는 능력은 윤서 학생의 가장 강력한 장점이에요.</strong></p>
+                <p class="mt-4">윤서 학생은 이미 훌륭한 건축가처럼 글의 설계도를 완벽하게 그리고, 그에 맞춰 튼튼한 집을 지을 줄 알아요. 그런데 그 멋진 집에 가구를 들여놓을 때, 아주 작은 흠집이 몇 개 보여요. 바로 **'Felurary'나 'seasch'와 같은 단어의 철자를 가끔 틀리는 것**이 **현재 보완하면 좋을 점(primary weakness)**이에요.</p>
+                <p class="mt-4">그래서 아주 간단한 공부 팁을 한 가지 줄게요. 바로 <strong>'소리 내어 읽으며 최종 점검하기'</strong>예요.</p>
+                <p class="mt-4">글을 다 쓴 후에, 처음부터 끝까지 소리 내어 천천히 읽어보는 습관을 들여보세요. 눈으로만 볼 때는 놓치기 쉬운 어색한 부분이나 철자 실수를, 소리 내어 읽으면 훨씬 쉽게 발견할 수 있답니다. 예를 들어, 'seasch'라고 쓴 부분을 읽으면 '어, 소리가 이상한데?' 하고 스스로 고칠 수 있게 될 거예요. 윤서 학생의 완벽한 글이 작은 실수 없이 더욱 빛나기를 응원할게요!</p>
+                <p class="mt-6 font-semibold text-right">- Your Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
