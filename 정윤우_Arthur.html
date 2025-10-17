@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* Purple Theme */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6; /* Purple Theme */
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6; /* Purple Theme */
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8404;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>정윤우 (Arthur) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 글 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 글 (Student's Original Writing)
+            </h3>
+            <div class="original-essay">
+My favorite season is spring. It is my favorite season because it is the beginning of new life, it's the start of the school year, and is something that we will need forever.
+First, it is the beginning of new life. There is a lot of loneliness during the winter. However, spring has new beginnings. From plants to mol thing Snow, it feels like the start of new life.
+Also, it is the start of a school year. You always learn something new, but spring has changes in education. New classrooms, new students. Also some times new detrudtlies are required.
+It is something we can't live without it. Even though spring can give some changes, too drastic ones can affect us for example, the first days of March are cold. If there could be no spring, I think deling winter things might make us get heat stroke. If we were confused when there isn't my favorite season.
+In conclusion, spring is my favorite season in these ways. I think everyone likes spring just like me.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 (Stricter Rubric Applied) -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Re-evaluated Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>서론-본론-결론의 3단 구조를 시도했으나, 본론의 세 번째 문단 내용이 모호하고 앞선 두 문단과의 논리적 연결성이 떨어집니다. 'Also'를 사용하여 문단을 나누었지만, 'First' 다음에는 'Second'를 사용하는 것이 일반적입니다. 결론이 본론의 내용을 요약하지 못하고 있어 필수 요소를 충족하지 못했습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'새로운 생명의 시작', '새 학년의 시작'이라는 추상적이고 수준 높은 이유를 제시한 점은 매우 훌륭합니다. 하지만 '봄이 없다면'을 가정한 세 번째 본론의 내용이 너무 복잡하고 논리가 불분명하여 설득력을 잃습니다. 구체적인 예시 또한 부족하여 높은 점수를 받기 어렵습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>'mol thing'(→melting), 'detrudtlies'(→difficulties), 'afecct'(→affect), 'cobluff'(→cold) 등 10개 이상의 철자 및 문법 오류가 발견됩니다. 'New classrooms, new students.'와 같이 불완전한 문장을 사용하고, 문장 구조가 어색한 부분이 많아 글의 명확성을 심각하게 해치므로 1점으로 평가됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>5 / 12 (42%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'beginning', 'loneliness', 'education', 'required', 'drastic', 'affect', 'confused', 'conclusion' 등 G3 수준을 넘어서는 매우 높은 수준의 어휘를 사용합니다. 추상적인 개념을 이해하고 표현하려는 시도가 돋보입니다.</p>
+                    <p><strong>강화 방안:</strong> 높은 수준의 어휘를 구사하는 만큼, 각 단어의 정확한 철자와 문맥에 맞는 쓰임새를 익히는 것이 중요합니다. 특히 철자 오류가 잦으므로, 글을 쓴 후 사전을 찾아보며 확인하는 습관을 들이는 것이 좋습니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'something that we will need'와 같이 관계대명사절을 사용하고, 'Even though'와 같은 접속사를 활용하는 등 복잡한 문법 구조에 대한 이해가 있습니다. 그러나 불완전한 문장을 구사하거나 어색한 표현('something we can't live without it')을 사용하는 등 문법의 정확성은 G2 수준에 머물러 있습니다.</p>
+                    <p><strong>강화 방안:</strong> 모든 문장에는 주어와 동사가 포함되어야 한다는 기본 원칙을 항상 기억해야 합니다. 'New classrooms, new students'와 같은 아이디어 나열은 완전한 문장으로 바꾸어 쓰는 연습이 필요합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'However', 'Also', 'Even though', 'For example' 등 다양한 연결어를 사용하여 문장과 아이디어를 연결하려는 시도는 G3 수준의 높은 논리적 사고를 보여줍니다. 생각의 흐름이 복잡하고 깊이가 있습니다.</p>
+                    <p><strong>강화 방안:</strong> 복잡한 생각을 표현할수록 문장 구조는 더 명확하고 간결해야 합니다. 하나의 문장에 너무 많은 생각을 담으려 하기보다, 두세 개의 짧고 명확한 문장으로 나누어 쓰는 연습을 하면 의미 전달력이 향상될 것입니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 서론-본론-결론의 형식을 시도했으나, 각 부분의 역할에 대한 이해가 부족합니다. 특히 세 번째 본론이 앞선 내용과 유기적으로 연결되지 않고 주제에서 벗어나는 경향을 보입니다. 결론 또한 본론의 내용을 요약하는 역할을 제대로 수행하지 못하고 있습니다.</p>
+                    <p><strong>강화 방안:</strong> 글을 쓰기 전에 개요(Outline)를 작성하는 훈련이 필수적입니다. 서론에서 제시할 세 가지 이유를 먼저 정하고, 본론에서는 그 세 가지 이유에 대해서만 각각 설명하며, 결론에서는 그 세 가지 이유를 다시 한번 요약하는 연습을 해야 합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Detailed Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">...and is something that we will need forever.</td><td class="corrected-sentence">...and <strong>it is</strong> something that we will need forever.</td><td>문법적으로 완전한 문장이 되려면 주어 'it'이 필요해요.</td></tr>
+                            <tr><td class="original-sentence">From plants to mol thing Snow, it feels like the start of new life.</td><td class="corrected-sentence">From <strong>blooming</strong> plants to <strong>melting</strong> snow, it feels like the start of new life.</td><td>'꽃피는 식물'과 '녹는 눈'으로 의미를 더 명확하게 했어요. 'mol thing'은 'melting'을 표현하려 한 것 같아요.</td></tr>
+                            <tr><td class="original-sentence">New classrooms, new students.</td><td class="corrected-sentence"><strong>There are</strong> new classrooms and new students.</td><td>단어 나열이 아닌 완전한 문장으로 만들어야 해요. '...이 있다'는 'There are'를 사용해요.</td></tr>
+                            <tr><td class="original-sentence">Also some times new detrudtlies are required.</td><td class="corrected-sentence">Also, <strong>sometimes</strong> new <strong>difficulties</strong> are required.</td><td>'sometimes'(때때로)와 'difficulties'(어려움들)의 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">It is something we can't live without it.</td><td class="corrected-sentence">It is something we can't live without.</td><td>'something'이 이미 문장의 목적어 역할을 하므로, 끝에 'it'을 또 쓸 필요가 없어요.</td></tr>
+                            <tr><td class="original-sentence">...too drastic ones can afecct us...</td><td class="corrected-sentence">...too drastic <strong>changes</strong> can <strong>affect</strong> us...</td><td>'ones'가 무엇을 가리키는지 명확하게 'changes'로 바꾸고, 'affect'(영향을 미치다)의 철자를 고쳤어요.</td></tr>
+                            <tr><td class="original-sentence">...the first days of March are cold.</td><td class="corrected-sentence">...the first days of March are <strong>cold</strong>.</td><td>'cobluff'는 'cold'(추운)의 오타인 것 같아요. </td></tr>
+                             <tr><td class="original-sentence">...I think deling winter things might make us get heat stroke.</td><td class="corrected-sentence">...I think <strong>doing</strong> winter things might make us get heat stroke.</td><td>'doing'(~하는 것)의 철자를 고쳤어요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 5: 최종 교정 모델 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 18V7.125C4.5 6.504 5.004 6 5.625 6H9" /></svg>
+                최종 교정 모델 (Final Corrected Model)
+            </h3>
+            <div class="final-essay">
+                <strong><center>Spring: A Time for New Beginnings</center></strong><br>
+                My favorite season is spring. I believe spring is the best season because it <strong>represents</strong> the beginning of new life and it is the start of a new school year.<br><br>
+                First, spring is the beginning of new life. After the <strong>loneliness</strong> of winter, spring brings new beginnings. From <strong>blooming</strong> plants to <strong>melting</strong> snow, everything feels fresh and new. <strong>For example, I love seeing the small green buds on the trees that were bare all winter.</strong><br><br>
+                Second, it is the start of a new school year. In spring, we experience many changes in our education. <strong>There are</strong> new classrooms to get used to and new students to meet. Sometimes, new <strong>activities</strong> and challenges are also required, which makes school exciting.<br><br>
+                <strong>Finally, spring is a necessary season that we can't live without.</strong> Even though the weather can be unpredictable, with some cold days in March, we need spring. Without it, the world would not feel complete, and we wouldn't have this wonderful time of renewal.<br><br>
+                In conclusion, spring is my favorite season because it brings new life and new starts at school. I think everyone can enjoy the fresh feeling that spring brings.
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>정윤우 학생에게,</h4>
+                <p>안녕하세요, 윤우(Arthur) 학생!</p>
+                <p class="mt-4">봄을 '새로운 생명의 시작'과 '새 학년의 시작'으로 표현한 글을 정말 감명 깊게 읽었어요. 다른 친구들이 보통 생각하는 이유가 아니라, 이렇게 깊고 철학적인 이유를 생각할 수 있다는 것이 정말 놀라워요. <strong>수준 높은 어휘를 사용해서 자신의 추상적인 생각을 표현하려는 시도가 윤우 학생의 가장 큰 장점이에요.</strong></p>
+                <p class="mt-4">윤우 학생의 머릿속에는 보석처럼 빛나는 생각들이 가득해요. 그런데 그 보석들을 담는 상자(문장)가 가끔은 너무 복잡하거나, 작은 흠집이 있어서 보석의 빛을 가리는 것 같아요. 바로 **불완전한 문장을 사용하거나, 단어의 철자를 자주 틀리는 것**이 **현재 가장 보완하면 좋을 점(primary weakness)**이에요.</p>
+                <p class="mt-4">그래서 아주 중요한 공부 팁을 한 가지 줄게요. 바로 <strong>'문장 소리 내어 읽고, 단어 확인하기'</strong>예요.</p>
+                <p class="mt-4">글을 다 쓴 후에, 자신이 쓴 문장을 처음부터 끝까지 소리 내어 읽어보세요. 읽다가 숨이 차거나 말이 꼬이는 부분이 있다면, 그 문장은 너무 길거나 어색할 가능성이 높아요. 그럴 때는 문장을 두 개로 나누어 보세요. 그리고 'detrudtlies'처럼 철자가 헷갈리는 단어는 꼭 사전을 찾아보는 습관을 들이는 거예요. 이렇게 소리 내어 읽고, 단어를 확인하는 두 가지 습관만으로도 윤우 학생의 깊은 생각이 훨씬 더 명확하고 빛나게 전달될 거예요. 응원할게요!</p>
+                <p class="mt-6 font-semibold text-right">- Your Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
