@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* Purple Theme */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6; /* Purple Theme */
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6; /* Purple Theme */
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8404;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>황수오 (Sean) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 글 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 글 (Student's Original Writing)
+            </h3>
+            <div class="original-essay">
+My favorite season is fall. I have things to tell you why I like fall.
+The first reason is we have Thanksgiving or Chuseok. On Chuseok we play Yut-nori. We play Yutnori as a game. We also wear Hanbok and Han-socks to celebrate Chuseok. we bow, we get 50,000 won. As we celebrate special Chuseok, we eat Tteokguk but in America people eat turkey.
+The second reason is we sometimes go on vacations. when we go on vacation, we could have a long journey. If we ride an plane, it would take some hours. After we arrive, we ride a bus or go straight to the airport. Even sometimes a car boat comes and we take cars to the hotel.
+The third reason is, could eat delicious, tasty Songpyeon. Songpyeon tastes good when you put sugar inside. To make songpyeon, you need a dough. Then, make a circle and make it flat. After that, you put your thump into the dough. You put sugar and make a circle. Last, you eat it.
+In conclusion, there are more things we could do during fall. However, I like eat delicious foods, Chuseok, and going on vacation.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 (Stricter Rubric Applied) -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Re-evaluated Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>서론-본론-결론의 3단 구조를 명확히 갖추고 있습니다. 'The first, second, third reason'을 사용하여 각 본론 문단을 구분한 점이 좋습니다. 다만, 서론의 주제문이 구체적인 이유를 제시하지 못했고, 결론이 본론 내용을 명확하게 요약하기보다 새로운 정보를 추가('However...')하는 등 아쉬움이 있습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>주제문은 단순했지만, 각 본론 문단의 내용은 매우 구체적이고 상세합니다. 특히 '송편 만드는 법'을 순서대로 설명하는 부분은 뛰어난 설명 능력을 보여줍니다. 추석의 문화를 상세히 묘사하고, 여행 경험을 순차적으로 나열하는 등 내용의 전개가 매우 풍부합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>'Yut-nori', 'Hanbok', 'Tteokguk', 'Songpyeon' 등 한국 문화를 설명하기 위한 어휘 선택이 훌륭합니다. 그러나 'an plane', 'thump', 'songpyear', 'eat i' 등 8개 미만의 철자 및 문법 오류가 발견됩니다. 따라서 2점으로 평가됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>8 / 12 (67%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'Thanksgiving', 'celebrate', 'vacations', 'journey', 'airport', 'delicious', 'dough', 'conclusion' 등 G3 수준 이상의 다양한 어휘를 사용합니다. 특히 'Yut-nori', 'Hanbok' 등 한국의 고유 문화를 영어로 설명하는 능력은 매우 뛰어납니다.</p>
+                    <p><strong>강화 방안:</strong> 이미 뛰어난 어휘력을 갖추고 있으므로, 'tasty'와 'delicious'처럼 비슷한 단어를 나열하기보다, 'savory'(짭짤한)나 'sweet'(달콤한)처럼 맛을 더 구체적으로 묘사하는 단어를 사용하면 표현이 더욱 풍부해질 것입니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'If we ride...', 'when you put...' 등 조건과 상황을 설명하는 복문을 잘 사용합니다. 그러나 관사 사용('an plane'→'a plane'), 주어 누락('could eat...'→'we could eat...'), 불필요한 단어 사용('eat it o') 등에서 G2 수준의 실수가 발견됩니다.</p>
+                    <p><strong>강화 방안:</strong> 글을 쓴 후 각 문장에 주어가 빠지지 않았는지 확인하는 습관이 중요합니다. 또한, 단어의 첫소리가 모음(a,e,i,o,u)일 때 'an'을 사용하는 관사 규칙을 복습하면 도움이 될 것입니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'To make songpyeon, you need...' 와 같이 목적을 나타내는 to부정사 구문으로 문장을 시작하거나, 'After we arrive...' 와 같이 시간의 흐름을 나타내는 접속사절을 사용하는 등 G3 수준의 다양하고 복잡한 문장 구조를 구사합니다.</p>
+                    <p><strong>강화 방안:</strong> 이미 훌륭한 문장 구성 능력을 갖추고 있습니다. 다음 단계로는 문장의 길이를 다양하게 조절하는 연습을 해볼 수 있습니다. 긴 설명 뒤에 'It is fun.'과 같이 짧고 간결한 문장을 넣어주면 글의 리듬감이 살아납니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 서론-본론-결론의 3단 구조와 본론을 세 부분으로 나누는 등 에세이의 형식에 대한 이해도가 높습니다. 하지만 서론의 주제문이 본론의 내용을 미리 요약해주지 못하고, 결론이 본론 내용을 명확히 요약하기보다 다소 혼란스럽게 마무리되는 점이 아쉽습니다.</p>
+                    <p><strong>강화 방안:</strong> 서론의 마지막 문장에서 '나는 추석, 여행, 송편 때문에 가을을 좋아한다'와 같이 본론에서 말할 내용을 미리 간략하게 소개해주는 'Thesis Statement' 작성법을 배우는 것이 가장 중요합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Detailed Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">we bow, we get 50,000 won.</td><td class="corrected-sentence"><strong>When</strong> we bow, we get 50,000 won.</td><td>'절을 할 때'라는 의미를 명확히 하기 위해 'When'을 추가했어요.</td></tr>
+                            <tr><td class="original-sentence">If we ride an plane, it would take some hours.</td><td class="corrected-sentence">If we ride <strong>a</strong> plane, it would take some hours.</td><td>'plane'은 'p' 소리로 시작하므로 앞에 'an'이 아닌 'a'를 써야 해요.</td></tr>
+                            <tr><td class="original-sentence">Even sometimes a car boat comes and we take cars to the hotel.</td><td class="corrected-sentence">Sometimes, a <strong>car ferry</strong> comes, and we take <strong>our car</strong> to the hotel.</td><td>차를 싣고 가는 배는 'car ferry'라고 불러요. 의미를 명확하게 하기 위해 'our car'로 바꾸었어요.</td></tr>
+                            <tr><td class="original-sentence">The third reason is, could eat delicious, tasty Songpyeon.</td><td class="corrected-sentence">The third reason is <strong>that we</strong> could eat delicious, tasty Songpyeon.</td><td>문장이 되려면 주어 'we'가 필요해요. 'that'으로 자연스럽게 연결했어요.</td></tr>
+                            <tr><td class="original-sentence">...you put your thump into the dough.</td><td class="corrected-sentence">...you put your <strong>thumb</strong> into the dough.</td><td>'엄지손가락'은 'thumb'이라고 써요. 'b'는 소리가 나지 않아요.</td></tr>
+                            <tr><td class="original-sentence">Last, you eat it.</td><td class="corrected-sentence">Last, you eat <strong>it</strong>.</td><td>'it o'에서 불필요한 'o'를 삭제했어요.</td></tr>
+                             <tr><td class="original-sentence">However, I like eat delicious foods, Chuseok, and going on vacation.</td><td class="corrected-sentence"><strong>In short,</strong> I like <strong>eating</strong> delicious foods, <strong>celebrating</strong> Chuseok, and going on vacation.</td><td>'However'(그러나)는 문맥에 맞지 않아 'In short'(요약하자면)으로 바꾸었어요. 나열되는 활동들의 형태를 'eating, celebrating, going'으로 맞춰주었어요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 5: 최종 교정 모델 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 18V7.125C4.5 6.504 5.004 6 5.625 6H9" /></svg>
+                최종 교정 모델 (Final Corrected Model)
+            </h3>
+            <div class="final-essay">
+                <strong><center>My Favorite Season: Fall</center></strong><br>
+                My favorite season is fall. <strong>I believe fall is the best season because we can celebrate Chuseok, go on family vacations, and eat delicious Songpyeon.</strong><br><br>
+                The first reason is that we have Chuseok. On Chuseok, we play traditional games like Yut-nori. We also wear Hanbok. <strong>When</strong> we bow to our elders, we get money. To celebrate, we eat special food. In Korea, we eat Tteokguk, but in America, people eat turkey for Thanksgiving.<br><br>
+                The second reason is we sometimes go on vacations. When we go on vacation, we can have a long journey. If we ride <strong>a</strong> plane, it takes a few hours. After we arrive, we might ride a bus or even a <strong>car ferry</strong> to take our car to the hotel. <br><br>
+                The third reason is that we can eat delicious Songpyeon. Songpyeon tastes best when you put sugar inside. To make it, you need a dough. Then, you make the dough flat, put your <strong>thumb</strong> in it, fill it with sugar, and shape it. Last, you get to eat it!<br><br>
+                In conclusion, there are many things to do during fall. <strong>I especially love this season because I get to eat delicious foods, celebrate Chuseok with my family, and go on memorable vacations.</strong>
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>황수오 학생에게,</h4>
+                <p>안녕하세요, 수오(Sean) 학생!</p>
+                <p class="mt-4">가을을 좋아하는 이유에 대한 글을 정말 재미있게 읽었어요. 추석에 윷놀이를 하고 한복을 입는 이야기, 비행기와 배를 타고 여행을 떠나는 상상, 그리고 송편을 만드는 방법을 순서대로 설명하는 부분까지! 수오 학생의 글은 마치 한 편의 생생한 다큐멘터리 같았어요. <strong>이렇게 자신의 경험과 지식을 구체적이고 상세하게 설명하는 능력이 수오 학생의 가장 큰 장점이에요.</strong></p>
+                <p class="mt-4">수오 학생은 이미 자신의 이야기를 흥미롭게 풀어낼 줄 아는 훌륭한 스토리텔러예요. 그런데 이야기를 시작하고 마무리할 때, 살짝 길을 헤매는 모습이 보여요. 글의 첫 부분(서론)에서 앞으로 어떤 이야기를 할지 명확하게 알려주지 않고, 마지막(결론)에서 갑자기 'However'를 사용하는 점이 **현재 가장 보완하면 좋을 점(primary weakness)**이에요.</p>
+                <p class="mt-4">그래서 아주 중요한 공부 팁을 한 가지 줄게요. 바로 <strong>'에세이 내비게이션 만들기'</strong> 연습이에요.</p>
+                <p class="mt-4">글을 쓰기 전에, 독자에게 길을 알려주는 내비게이션을 만든다고 생각해보세요. 서론의 마지막 문장에서 "저는 지금부터 추석, 여행, 송편이라는 세 가지 목적지로 안내하겠습니다."라고 미리 알려주는 거예요. 그리고 결론에서는 "우리는 오늘 추석, 여행, 송편이라는 세 곳을 모두 둘러보았습니다."라고 여행을 마무리지어주는 거죠. 이렇게 서론과 결론에서 글의 전체적인 계획과 요약을 보여주면, 독자들이 길을 잃지 않고 수오 학생의 이야기를 훨씬 더 재미있게 따라올 수 있을 거예요. 응원할게요!</p>
+                <p class="mt-6 font-semibold text-right">- Your Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
