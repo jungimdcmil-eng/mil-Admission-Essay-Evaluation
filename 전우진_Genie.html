@@ -1,0 +1,352 @@
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- Part 1: Original Student Writing -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>전우진 (Genie) 학생 에세이 분석 보고서</p>
+        </header>
+
+        <!-- Part 1: Original Student Writing -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path></svg>
+                Original Student Writing (학생 원본 에세이)
+            </h3>
+            <div class="original-essay">
+What if you woke up as an animal? what would you be? I like an elephant. First an elephants is my favorite animal? Second elephants are huge animals. Third elephants are good animals. First elephants are huge because they are the biggest land animal. ALSO the blue whale is biggest animal in all. Second, they are huge animal that they has a big trunk. Also they are good animals. Third and they could see animals to play with and so it will be the best. In conclusion elephants are good animals to play witht.
+            </div>
+        </section>
+
+        <!-- Part 2: Rubric Score -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Rubric Score (평가 점수)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td><strong>평가:</strong> 'First', 'Second', 'Third'와 같은 전환어를 사용하려는 시도는 있으나, **논리적 순서가 매우 혼란스럽고** 같은 내용이 반복됩니다. **발전하거나 해결되는 문제/목표가 없으며**, 문단 나누기도 되어있지 않습니다. 대부분의 기준이 누락되어 1점을 부여합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td><strong>평가:</strong> 코끼리가 되고 싶다는 아이디어를 제시했지만, **인물의 감정, 생각, 배경 묘사가 전혀 없습니다.** '논다'는 행동이 구체적으로 묘사되지 않았으며, 글 전체가 상상 속의 이야기가 아닌 사실 나열에 그쳤습니다. 대부분의 기준이 누락되어 1점을 부여합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td><strong>평가:</strong> **문장 구조가 매우 단조롭고, 어휘 선택이 제한적**입니다. 'elephants is', 'they has'와 같은 심각한 문법 오류와 'eleplant' 등 철자 오류가 많아 **가독성이 매우 낮습니다.** 거의 모든 기준을 충족하지 못하여 1점을 부여합니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>3 / 12 (25%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: Skill Level Analysis -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197"></path></svg>
+                Skill Level Analysis (학생 역량 분석)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 'elephant', 'huge', 'big', 'good' 등 G1 수준의 매우 기본적인 단어를 반복적으로 사용하고 있습니다. 'trunk'와 같은 구체적인 단어를 알고 있는 점은 긍정적이나, 묘사를 위한 어휘가 절대적으로 부족합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 'elephants is'(are), 'they has'(have) 등 주어와 동사의 수 일치와 같은 가장 기본적인 문법 규칙을 이해하지 못하고 있습니다. 문장 구조 자체가 불완전하여 문법적 오류가 문장 전체에 걸쳐 나타납니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 대부분 'Elephants are ~' 형태의 매우 단순한 문장 구조만 반복하고 있습니다. 문장 간의 연결이 어색하고, 완전한 문장을 만드는 능력이 부족합니다. G1 수준의 문장 쓰기 능력입니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Story Structure (글의 구조)</h4>
+                    <span class="level level-beginner">Beginner (G1)</span>
+                    <p><strong>분석:</strong> 주어진 프롬프트('동물이 된다면 무엇을 할 것인가?')를 이해하고 이야기를 쓰는 대신, 자신이 아는 코끼리에 대한 사실을 나열하는 설명문을 작성했습니다. 이야기의 기본 요소(사건, 배경, 인물)가 전혀 없습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: Detailed Corrections -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
+                Detailed Corrections (상세 교정)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: Sentence-by-Sentence Correction</h4>
+                <p class="text-gray-600 mb-4">학생의 원본 글은 문법과 철자 오류가 많고 논리적 흐름이 부족하여, G1 수준에 맞춰 문장을 재구성하는 방식으로 교정했습니다.</p>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr>
+                                <th>Original Idea (학생의 아이디어)</th>
+                                <th>Reconstructed Sentence (재구성 문장)</th>
+                                <th>Explanation (설명)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="original-sentence">I like an elephant. First an elephants is my favorite animal?</td>
+                                <td class="corrected-sentence">If I woke up as an animal, I would be an elephant.</td>
+                                <td>프롬프트에 맞게 '만약 동물이 된다면, 코끼리가 될 것이다'라는 완전한 문장으로 만들었어요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">Second elephants are huge animals... they are the biggest land animal.</td>
+                                <td class="corrected-sentence">I like elephants because they are huge. They are the biggest animals on land.</td>
+                                <td>'코끼리를 좋아한다'는 생각과 '왜냐하면 크기 때문이다'라는 이유를 'because'로 연결해 주었어요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">Second, they are huge animal that they has a big trunk.</td>
+                                <td class="corrected-sentence">Also, they have long trunks.</td>
+                                <td>'they' 다음에는 'have'를 써야 해요. 코끼리의 특징인 '긴 코'를 설명하는 문장으로 다듬었어요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">Third and they could see animals to play with and so it will be the best.</td>
+                                <td class="corrected-sentence">As an elephant, I could play with other animal friends. It would be the best.</td>
+                                <td>'코끼리로서 다른 동물 친구들과 놀 수 있을 것이다'라는 의미를 명확하게 전달하도록 문장을 만들었어요.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="correction-step">
+                <h4>Step 2: Overall Flow & Word Choice</h4>
+                <p class="text-gray-600"><strong>반복 및 어색한 표현 (Repetition & Awkward Phrasing):</strong> 'huge animals', 'good animals'와 같은 표현이 아무런 설명 없이 반복됩니다. 글의 주제가 '내가 코끼리가 되면 할 일'이 아니라 '코끼리에 대한 설명'으로 바뀌어 프롬프트의 요구를 따르지 못했습니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 글을 쓰기 전에 프롬프트가 무엇을 요구하는지 다시 한번 생각해보는 것이 중요해요. '내가 코끼리가 되면 ~을 할 것이다' (I would...) 와 같이 상상 속의 '나'를 주인공으로 하는 이야기를 만드는 연습이 필요합니다.</p>
+            </div>
+        </section>
+
+        <!-- Part 5: Final Corrected Model -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.691V5.006h-4.992a8.25 8.25 0 01-11.667 0v4.992m16.66-4.993l-3.181 3.183a8.25 8.25 0 01-11.667 0l-3.181-3.183"></path></svg>
+                Final Corrected Model (최종 교정본)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 아이디어를 바탕으로, 프롬프트의 요구에 맞춰 G1 수준의 이야기로 재구성한 모델 스토리입니다.</p>
+            <div class="final-essay">
+                <strong>My Day as an Elephant</strong><br><br>
+                If I woke up as an animal, I would want to be an elephant. <strong>I think it would be fun to be so big and strong for a day.</strong><br><br>
+                First, I would walk to a big lake. I would use my long trunk to drink water. Then, I would spray the water all over my body. <strong>It would feel cool and refreshing on a hot day.</strong><br><br>
+                Next, I would look for other animal friends, like monkeys and birds. We could play hide-and-seek together in the tall grass. <strong>Because I am so big, I might not be very good at hiding, but it would be fun to try!</strong><br><br>
+                Being a huge and friendly elephant for a day would be the best adventure.
+            </div>
+        </section>
+
+        <!-- Part 6: Letter to the Student -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
+                Letter to the Student (학생에게 보내는 편지)
+            </h3>
+            <div class="letter">
+                <h4>전우진 (Genie) 학생에게.</h4>
+                <p class="mt-4">우진 학생, 안녕하세요! 코끼리를 정말 좋아하는 학생의 마음이 글에서 느껴졌어요. 코끼리가 크고, 코가 길고, 다른 동물들과 잘 지내는 좋은 동물이라고 소개해 주려는 모습이 인상 깊었어요. 'First', 'Second', 'Third'를 사용해서 글을 정리하려는 시도도 좋았답니다.</p>
+                <p class="mt-4"><strong>(Strength/강점)</strong> 우진 학생의 강점은 **자신이 좋아하는 것에 대해 이야기하려는 열정**이에요. 코끼리에 대해 아는 것을 영어로 표현하기 위해 노력하는 모습이 보였어요. 이런 열정은 앞으로 영어를 배우는 데 가장 큰 힘이 될 거예요.</p>
+                <p class="mt-4"><strong>(Weakness/보완할 점)</strong> 하지만 글의 주제가 '만약 내가 코끼리가 된다면?'이라는 상상 속의 이야기가 아니라, 코끼리에 대한 사실을 설명하는 글이 되어 버려서 아쉬웠어요. 또한, **철자와 문법 실수가 너무 많아서** 선생님이 학생의 생각을 이해하기가 조금 어려웠답니다.</p>
+                <p class="mt-4"><strong>(Suggested Study Tip/학습 팁)</strong> 그래서 지금 우진 학생에게 가장 필요한 연습은 **'주인공이 되어 한 문장씩 말해보기'**예요.  글을 쓰기 전에, 내가 진짜 코끼리가 되었다고 상상해보는 거예요. 그리고 코끼리가 할 법한 행동을 한 문장씩 만들어보는 거죠. "나는 코끼리다(I am an elephant)." "나는 코로 물을 마신다(I drink water with my trunk)." "나는 친구들과 논다(I play with friends)." 이렇게 '나'를 주인공으로 짧고 완전한 문장을 만드는 연습을 하면, 학생의 글이 멋진 이야기로 변신할 수 있을 거예요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
