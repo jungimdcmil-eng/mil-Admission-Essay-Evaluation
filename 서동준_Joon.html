@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- Part 1: Original Student Writing -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>서동준 (Joon) 학생 에세이 분석 보고서</p>
+        </header>
+
+        <!-- Part 1: Original Student Writing -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path></svg>
+                Original Student Writing (학생 원본 에세이)
+            </h3>
+            <div class="original-essay">
+Can you imagine one day you woke up and you were an animal if I woke up an animal, I want to be a hechog. I will tell you about what I want to do.
+
+Fist I would go to the forest and eat gras for my breakfast. als I would eat wet grasses but when I am eating my enemy comes I will poke the enemy with my spiker. Then I would find a place to live whitch is safe for me to live and have many waters incide. I would pick rain forest beacause it have many waters inside and It don't have many enemys wide the rain forest.
+
+At last end I would fall in mud. I don't brush teeth. I would not brush teeth because there isn't tooth paste and tooth brush for brushing teeth.
+
+I really want to be a heachog. but It was only a deam. I really want to be a heachog when I was a kid to do these things.
+            </div>
+        </section>
+
+        <!-- Part 2: Rubric Score -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Rubric Score (평가 점수)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td><strong>평가:</strong> 글에 시작-중간-끝, 논리적 순서, 전환어, 목표 설정 및 해결 기준은 충족합니다. 하지만 모든 내용이 분리되지 않고 큰 덩어리로 작성되어 **문단 나누기(Paragraphing)가 이루어지지 않았습니다.** 아이디어 구분이 명확하지 않아 규칙에 따라 최대 2점을 부여합니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td><strong>평가:</strong> 모든 평가 기준을 충족합니다. 고슴도치가 되어 가시로 적을 찌르고, 안전한 열대우림을 집으로 고르는 등 생존이라는 목표 아래 창의적인 상황과 행동을 구체적으로 묘사했습니다. 마지막에 꿈이었다는 성찰도 좋습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td><strong>평가:</strong> **문법(Grammar)**과 **기계적 규칙(Mechanics)** 기준을 충족하지 못했습니다. 시제 혼합('I want'/'I would'), 주어-동사 불일치('it have'), 수많은 철자 오류('hechog', 'gras', 'spiker')가 글의 가독성을 크게 해쳐 높은 점수를 받을 수 없습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>6 / 12 (50%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: Skill Level Analysis -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197"></path></svg>
+                Skill Level Analysis (학생 역량 분석)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'enemy', 'safe', 'rain forest', 'poke' 등 G2 수준의 구체적인 어휘를 사용하여 상황을 설명하려 합니다. 그러나 'hedgehog', 'grass', 'spikes' 등 핵심 단어의 철자를 몰라 소리 나는 대로 쓰는 경향이 강합니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-beginner">Beginner (G1-G2)</span>
+                    <p><strong>분석:</strong> 가정의 상황임에도 불구하고 'I want', 'I will' 등 현재와 미래 시제를 혼용하고 있습니다. 또한 'it have', 'it don't'와 같이 3인칭 단수 동사 규칙을 지키지 못하는 등 G1-G2 수준의 기초 문법 오류가 많습니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'when I am eating my enemy comes', '...because it have many waters'와 같이 'when', 'because'를 사용한 복문을 만들 수 있습니다. 그러나 문장 구조가 종종 어색하고, 대부분 단순한 문장 나열에 그칩니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Story Structure (글의 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> '생존'이라는 뚜렷한 목표를 설정하고, 그에 따른 행동(먹이 찾기, 방어, 집 구하기)을 논리적 순서로 배열하는 문제 해결 구조를 보여줍니다. 이는 G2 수준 이상의 구성 능력이지만, 문단 나누기가 없어 글의 가독성이 떨어집니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: Detailed Corrections -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
+                Detailed Corrections (상세 교정)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: Sentence-by-Sentence Correction</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr>
+                                <th>Original Sentence</th>
+                                <th>Corrected Sentence</th>
+                                <th>Explanation (설명)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="original-sentence">...if I woke up an animal, I want to be a hechog.</td>
+                                <td class="corrected-sentence">...if I woke up as an animal, I <strong>would want</strong> to be a <strong>hedgehog</strong>.</td>
+                                <td>'만약 ~라면'이라는 상상이므로 'would want'를 써야 해요. 'hedgehog'(고슴도치)의 철자를 고쳤어요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">Fist I would go to the forest and eat gras for my breakfast.</td>
+                                <td class="corrected-sentence"><strong>First,</strong> I would go to the forest and eat <strong>grass</strong> for my breakfast.</td>
+                                <td>'First'와 'grass'의 철자를 수정했어요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">...but when I am eating my enemy comes I will poke the enemy with my spiker.</td>
+                                <td class="corrected-sentence">...but when an <strong>enemy comes</strong> while I am eating, I will poke the enemy with my <strong>spikes</strong>.</td>
+                                <td>'enemy' 앞에 'an'을 붙이고, '가시'는 'spikes'라고 복수형으로 써요. 문장을 더 자연스럽게 다듬었어요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">...find a place to live whitch is safe for me...</td>
+                                <td class="corrected-sentence">...find a place to live <strong>which</strong> is safe for me...</td>
+                                <td>'어떤 장소냐 하면'이라고 설명해주는 관계대명사 'which'의 철자를 고쳤어요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">I would pick rain forest beacause it have many waters inside and It don't have many enemys...</td>
+                                <td class="corrected-sentence">I would pick <strong>the</strong> rain forest <strong>because</strong> it <strong>has</strong> a lot of water inside and it <strong>doesn't</strong> have many <strong>enemies</strong>...</td>
+                                <td>'because', 'enemies'의 철자를 고쳤어요. 주어가 'it'일 때는 'has'와 'doesn't'를 써야 해요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">At last end I would fall in mud.</td>
+                                <td class="corrected-sentence"><strong>Lastly,</strong> I would fall in the mud.</td>
+                                <td>'마지막으로'는 'Lastly' 또는 'Finally'라고 써요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">I really want to be a heachog. but It was only a deam.</td>
+                                <td class="corrected-sentence">I really want to be a <strong>hedgehog</strong>, but it was only a <strong>dream</strong>.</td>
+                                <td>'hedgehog'와 'dream'의 철자를 고쳤어요.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="correction-step">
+                <h4>Step 2: Overall Flow & Word Choice</h4>
+                <p class="text-gray-600"><strong>반복 및 어색한 표현 (Repetition & Awkward Phrasing):</strong> 시제가 과거('would')와 현재/미래('want', 'will')를 오가서 통일성이 없습니다. 소리 나는 대로 쓴 철자 오류('hechog', 'gras', 'beacause')가 매우 많아 의미 전달을 방해합니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 글의 시간 배경을 하나로 정하는 연습이 필요합니다. '만약 ~라면'이라는 상상의 이야기이므로, 모든 행동을 'I would...'로 통일해서 쓰는 것이 좋습니다. 또한, 자주 쓰는 기본 단어의 정확한 철자를 익히는 것이 가장 중요합니다.</p>
+            </div>
+        </section>
+
+        <!-- Part 5: Final Corrected Model -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.691V5.006h-4.992a8.25 8.25 0 01-11.667 0v4.992m16.66-4.993l-3.181 3.183a8.25 8.25 0 01-11.667 0l-3.181-3.183"></path></svg>
+                Final Corrected Model (최종 교정본)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 논리적인 아이디어를 바탕으로, 문법과 철자 오류를 수정한 모델 스토리입니다.</p>
+            <div class="final-essay">
+                <strong>My Day as a Hedgehog</strong><br><br>
+                If I woke up as an animal, I <strong>would want</strong> to be a <strong>hedgehog</strong>. I will tell you what I would do.<br><br>
+                First, I would go to the forest and eat <strong>grass</strong> for my breakfast. If an <strong>enemy came</strong> while I was eating, I would poke it with my <strong>spikes</strong>.<br><br>
+                Then, I would find a safe place to live. I would pick the rain forest <strong>because</strong> it <strong>has</strong> a lot of water and it <strong>doesn't</strong> have many <strong>enemies</strong>. <strong>Living there would be very safe.</strong><br><br>
+                <strong>Lastly</strong>, I would play in the mud. I wouldn't need to brush my teeth because there isn't any toothpaste for <strong>hedgehogs</strong>! <br><br>
+                I really want to be a <strong>hedgehog</strong>, but I know it was only a <strong>dream</strong>. Still, I hope I can do these things one day.
+            </div>
+        </section>
+
+        <!-- Part 6: Letter to the Student -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
+                Letter to the Student (학생에게 보내는 편지)
+            </h3>
+            <div class="letter">
+                <h4>서동준 (Joon) 학생에게.</h4>
+                <p class="mt-4">동준 학생, 안녕하세요! 고슴도치가 되어 겪는 하루가 정말 흥미진진하게 그려졌어요. 가시로 적을 물리치고, 안전한 열대우림에 집을 짓고, 칫솔이 없어서 양치를 안 해도 된다는 생각이 정말 기발하고 재미있었어요.</p>
+                <p class="mt-4"><strong>(Strength/강점)</strong> 동준 학생의 가장 큰 강점은 **논리적으로 생각하는 힘**이에요. 그냥 노는 것이 아니라, '안전'이라는 목표를 가지고 '적이 적고 물이 많은' 열대우림을 집으로 고르는 모습에서 문제 해결 능력이 돋보였어요. 이런 논리력은 글을 탄탄하게 만드는 아주 중요한 능력이에요.</p>
+                <p class="mt-4"><strong>(Weakness/보완할 점)</strong> 하지만 이렇게 멋진 논리가 **잦은 철자 실수와 문법 오류** 때문에 잘 전달되지 않아 너무 아쉬웠어요. 'hedgehog'를 'hechog'로, 'grass'를 'gras'로 쓰는 등, 소리 나는 대로 쓰는 단어가 많았고, 시제도 조금 헷갈리는 것 같았어요.</p>
+                <p class="mt-4"><strong>(Suggested Study Tip/학습 팁)</strong> 그래서 다음에는 **'나만의 단어 카드 만들기'**를 해보는 걸 추천해요. [Image of a child creating flashcards with pictures and words] 오늘 틀렸던 'hedgehog' 같은 단어를 카드의 한쪽에는 그림으로 그리고, 다른 쪽에는 정확한 철자로 써보는 거예요. 이렇게 직접 만든 카드로 퀴즈 놀이를 하다 보면, 어려운 단어도 재미있게 외울 수 있을 거예요. 정확한 단어 사용은 학생의 뛰어난 논리를 더욱 빛나게 해줄 거랍니다!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
