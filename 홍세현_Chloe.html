@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6;
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6;
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #6d28d9;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8a04;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- Part 1: Original Student Writing -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>홍세현 (Chloe) 학생 에세이 분석 보고서</p>
+        </header>
+
+        <!-- Part 1: Original Student Writing -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path></svg>
+                Original Student Writing (학생 원본 에세이)
+            </h3>
+            <div class="original-essay">
+It could be impossible for person to be an animal but it happened to me. One day in July, I woke up as an orange cat with blue eyes. I ran out of apartmand to look for other cats. What should I do? I remembered a gray cat sitting on my moms sofa. I ran back in and I saw two cats rubbing each other like my mom and my sister. Someone minst have put us under a curse of something. I saw a dim green light coming behind my bed... It was a Fairy! She tried to explain that transforming hay family into cats are her mistake but I couldn't hear het well because she was crying. Since she was so sorry that she could only use Magic onre a day, she gave me some cat food. I ate breakfast and play with my sistor that was my one day pattern. Because I wasted 12 hours for the day I slept for 12 hours, Poof!
+
+The first thing I checked was myself. I was back! Other members in my family were burk, too! We danced, sany, and cartwheeled in the garden. Thanks to the fairy I could come back.
+            </div>
+        </section>
+
+        <!-- Part 2: Rubric Score -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Rubric Score (평가 점수)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">4 / 4</span></td>
+                        <td><strong>평가:</strong> 모든 평가 기준을 완벽하게 충족합니다. '문제 발생(고양이로 변함) → 원인 발견(요정의 실수) → 문제 해결(마법으로 돌아옴)'의 명확한 서사 구조를 갖추고 있습니다. 문단 나누기도 적절하며, 이야기의 흐름이 매우 자연스럽고 논리적입니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">4 / 4</span></td>
+                        <td><strong>평가:</strong> 모든 평가 기준을 완벽하게 충족합니다. 가족 전체가 고양이로 변했다는 설정, 요정의 실수라는 독창적인 원인, 그리고 다시 돌아와 기뻐하는 모습까지 깊이 있는 감정 묘사와 창의적인 아이디어가 돋보입니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td><strong>평가:</strong> 어휘 선택, 문장 다양성, 목소리, 가독성 기준은 충족했으나, **문법(Grammar)**과 **기계적 규칙(Mechanics)** 기준을 충족하지 못했습니다. 'transforming... are her mistake'와 같은 문법 오류와 'apartmand', 'minst', 'sany' 등 철자 오류가 다수 발견되어 높은 점수를 받을 수 없습니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>10 / 12 (83%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: Skill Level Analysis -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197"></path></svg>
+                Skill Level Analysis (학생 역량 분석)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'impossible', 'transforming', 'curse', 'explain' 등 G3 수준 이상의 어휘를 사용하여 복잡한 상황을 설명하는 능력이 뛰어납니다. 어휘 수준이 높아 글의 내용을 풍부하게 만듭니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 문장 구조는 안정적이지만, 주어-동사 수 일치('transforming... are her mistake')와 같은 G2 수준의 문법 오류가 나타납니다. 'play'를 과거형으로 쓰지 않는 등 시제 실수도 간혹 발견됩니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 'Since she was so sorry that she could only use Magic once a day, she gave me some cat food.'와 같이 이유와 결과를 나타내는 긴 복문을 자유자재로 구사합니다. 문장 구조 활용 능력이 매우 뛰어납니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Story Structure (글의 구조)</h4>
+                    <span class="level level-advance">Advance (G3)</span>
+                    <p><strong>분석:</strong> 발단-전개-위기-절정-결말의 완벽한 5단 구성 서사 구조를 보여줍니다. '요정의 실수'라는 명확한 갈등 원인과 '하루에 한 번의 마법'이라는 제약을 통해 긴장감을 조성하고, 이를 해결하는 과정이 논리적입니다. G3 상위 수준의 작문 능력입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: Detailed Corrections -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"></path></svg>
+                Detailed Corrections (상세 교정)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: Sentence-by-Sentence Correction</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr>
+                                <th>Original Sentence</th>
+                                <th>Corrected Sentence</th>
+                                <th>Explanation (설명)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="original-sentence">I ran out of apartmand to look for other cats.</td>
+                                <td class="corrected-sentence">I ran out of <strong>my apartment</strong> to look for other cats.</td>
+                                <td>'apartment'의 철자를 수정하고, '나의' 아파트라는 의미로 'my'를 추가했어요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">Someone minst have put us under a curse of something.</td>
+                                <td class="corrected-sentence">Someone <strong>must</strong> have put us under a curse or something.</td>
+                                <td>'틀림없다'는 뜻의 'must'의 철자를 고쳤어요. 'of' 대신 'or'를 써야 자연스러워요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">She tried to explain that transforming hay family into cats are her mistake...</td>
+                                <td class="corrected-sentence">She tried to explain that transforming <strong>my</strong> family into cats <strong>was</strong> her mistake...</td>
+                                <td>'transforming'이라는 행동이 주어이므로 단수 동사인 'was'를 써야 해요. 'my family'가 더 정확한 표현이에요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">...but I couldn't hear het well because she was crying.</td>
+                                <td class="corrected-sentence">...but I couldn't hear <strong>her</strong> well because she was crying.</td>
+                                <td>'그녀를'이라는 뜻의 'her'의 철자를 고쳤어요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">Since she was so sorry that she could only use Magic onre a day, she gave me some cat food.</td>
+                                <td class="corrected-sentence">Since she was so sorry and could only use magic <strong>once</strong> a day, she gave me some cat food.</td>
+                                <td>'한 번'을 뜻하는 'once'의 철자를 수정했어요. 문장 구조를 더 자연스럽게 다듬었어요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">I ate breakfast and play with my sistor that was my one day pattern.</td>
+                                <td class="corrected-sentence">I ate breakfast and <strong>played</strong> with my <strong>sister</strong>. That was my daily pattern.</td>
+                                <td>과거 이야기이므로 'played'라고 써야 해요. 'sister'의 철자를 고치고, 'one day'보다 'daily'(매일의)가 더 자연스러워요.</td>
+                            </tr>
+                            <tr>
+                                <td class="original-sentence">Other members in my family were burk, too!</td>
+                                <td class="corrected-sentence">Other members of my family were <strong>back</strong>, too!</td>
+                                <td>'돌아왔다'는 뜻의 'back'의 철자를 고쳤어요. '가족 구성원'은 'members of my family'가 더 자연스러워요.</td>
+                            </tr>
+                             <tr>
+                                <td class="original-sentence">We danced, sany, and cartwheeled in the garden.</td>
+                                <td class="corrected-sentence">We danced, <strong>sang</strong>, and cartwheeled in the garden.</td>
+                                <td>'sing'의 과거형은 'sang'이에요. 불규칙 동사는 외워두는 것이 좋아요.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="correction-step">
+                <h4>Step 2: Overall Flow & Word Choice</h4>
+                <p class="text-gray-600"><strong>반복 및 어색한 표현 (Repetition & Awkward Phrasing):</strong> 이야기의 흐름이 매우 좋고 어색한 표현이 거의 없습니다. 다만, 'minst'(must), 'onre'(once), 'sany'(sang) 등 파닉스에 의존한 철자 오류가 반복적으로 나타납니다.</p>
+                <p class="text-gray-600 mt-2"><strong>제안 (Suggestion):</strong> 뛰어난 스토리텔링 능력을 갖추고 있으므로, 이제는 글의 정확성에 집중할 때입니다. 글을 다 쓴 후, 소리 내어 읽어보며 어색한 단어가 없는지 확인하고, 특히 자주 틀리는 단어 목록을 만들어 정확한 철자를 암기하는 것이 큰 도움이 될 것입니다.</p>
+            </div>
+        </section>
+
+        <!-- Part 5: Final Corrected Model -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0011.667 0l3.181-3.183m-4.991-2.691V5.006h-4.992a8.25 8.25 0 01-11.667 0v4.992m16.66-4.993l-3.181 3.183a8.25 8.25 0 01-11.667 0l-3.181-3.183"></path></svg>
+                Final Corrected Model (최종 교정본)
+            </h3>
+            <p class="text-gray-600 mb-4">학생의 뛰어난 상상력과 이야기 구조를 바탕으로, 문법과 철자 오류를 수정한 모델 스토리입니다.</p>
+            <div class="final-essay">
+                <strong>The Fairy's Mistake</strong><br><br>
+                It might be impossible for a person to become an animal, but it happened to me. One day in July, I woke up as an orange cat with blue eyes. I ran out of my <strong>apartment</strong> to look for other cats. "What should I do?" I thought. I remembered a gray cat sitting on my mom’s sofa. I ran back inside and saw two cats rubbing against each other, just like my mom and my sister. Someone <strong>must</strong> have put us under a curse!<br><br>
+                I saw a dim green light coming from behind my bed... It was a fairy! She tried to explain that transforming my family into cats <strong>was</strong> her mistake, but I couldn't hear <strong>her</strong> well because she was crying. Since she was so sorry and could only use magic <strong>once</strong> a day, she gave me some cat food as an apology.<br><br>
+                For the rest of the day, my routine was simple: I ate breakfast and <strong>played</strong> with my <strong>sister</strong>. Because I had used 12 hours of the day, I slept for the next 12 hours. Then... Poof!<br><br>
+                The first thing I checked was myself. I was back! Other members of my family were <strong>back</strong>, too! We were so happy that we danced, <strong>sang</strong>, and cartwheeled in the garden. Thanks to the fairy, I could come back.
+            </div>
+        </section>
+
+        <!-- Part 6: Letter to the Student -->
+        <section class="section">
+             <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
+                Letter to the Student (학생에게 보내는 편지)
+            </h3>
+            <div class="letter">
+                <h4>홍세현 (Chloe) 학생에게.</h4>
+                <p class="mt-4">세현 학생, 안녕하세요! 어느 날 가족 모두가 고양이로 변해버린 이야기가 한 편의 동화처럼 정말 환상적이었어요. 요정의 실수라는 설정과 하루에 한 번만 마법을 쓸 수 있다는 규칙까지, 이야기를 정말 흥미진진하게 만드는 재능이 뛰어나요.</p>
+                <p class="mt-4"><strong>(Strength/강점)</strong> 세현 학생의 가장 큰 강점은 **탄탄한 스토리텔링 능력**이에요. 글에 문제 상황, 원인, 해결 과정이 모두 들어 있어서 독자가 이야기에 완전히 몰입하게 만들어요. 이런 능력은 G3 수준을 넘어서는 작가와 같은 재능이랍니다.</p>
+                <p class="mt-4"><strong>(Weakness/보완할 점)</strong> 하지만 이렇게 완벽한 이야기에 작은 실수들이 옥에 티처럼 보였어요. 바로 **단어의 철자**예요. 'must'를 'minst'로, 'once'를 'onre'로, 'sang'을 'sany'로 쓰는 등, 소리 나는 대로 단어를 쓰는 경향이 있었어요. 정확한 철자는 글의 신뢰도를 높여준답니다.</p>
+                <p class="mt-4"><strong>(Suggested Study Tip/학습 팁)</strong> 그래서 다음 글을 쓸 때는 **'나만의 오답 노트 만들기'**를 추천해요.  이번 글에서 틀렸던 단어들을 공책에 정리해보는 거예요. 왼쪽에는 틀린 단어('minst'), 오른쪽에는 맞는 단어('must')를 쓰고, 그 단어로 짧은 문장을 만들어보는 거죠. 이렇게 자신이 자주 틀리는 단어들을 따로 관리하면, 다음번에는 훨씬 더 정확한 글로 완벽한 이야기를 들려줄 수 있을 거예요!</p>
+                <p class="mt-6 font-semibold text-right">- From mil Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
