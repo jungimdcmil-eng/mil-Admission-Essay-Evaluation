@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mil English Essay Evaluation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .report-header {
+            background-color: #5b21b6; /* Purple Theme */
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .report-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .report-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        .section {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .section-title svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 0.75rem;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .original-essay {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #374151;
+            white-space: pre-wrap;
+        }
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .rubric-table th, .rubric-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rubric-table th {
+            background-color: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+        }
+        .rubric-table td .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #5b21b6; /* Purple Theme */
+        }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background-color: #f9fafb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .skill-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .skill-card .level {
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .level-beginner { background-color: #fee2e2; color: #b91c1c; }
+        .level-intermediate { background-color: #ffedd5; color: #c2410c; }
+        .level-advance { background-color: #dbeafe; color: #1e40af; }
+        .skill-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        .skill-card p strong {
+            color: #374151;
+        }
+        .correction-step {
+            margin-bottom: 2rem;
+        }
+        .correction-step h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #5b21b6; /* Purple Theme */
+            display: inline-block;
+        }
+        .correction-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        .correction-table th, .correction-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid #e5e7eb;
+        }
+        .correction-table th {
+            background-color: #f3f4f6;
+        }
+        .original-sentence {
+            color: #ef4444;
+        }
+        .corrected-sentence {
+            color: #22c55e;
+            font-weight: 500;
+        }
+        .final-essay {
+            background-color: #f5f3ff;
+            border-left: 4px solid #5b21b6; /* Purple Theme */
+            padding: 1.5rem;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+        .final-essay strong {
+            color: #5b21b6;
+        }
+        .letter {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .letter h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ca8404;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <!-- 보고서 헤더 -->
+        <header class="report-header">
+            <h1>mil English Essay Evaluation</h1>
+            <p>성보검 (Bogeom) 학생</p>
+        </header>
+
+        <!-- Part 1: 학생 원본 글 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                학생 원본 글 (Student's Original Writing)
+            </h3>
+            <div class="original-essay">
+My favorite season is winter. I can play snowball fight. And my family can go to snowfight together. I can throw the big snow ball then my family will fall down at the snow. I think it will be fun.
+Second, I can make snowmans. It will be huge. And my family will like my snowmans. My family will make it, too. I think it will be fun to make a huge snowman.
+Third, I can roll down to the bottom of the mountain. And my family doesn't roll down since it is dangerous. I would love to roll down faster because I can move faster then a slide.
+In conclusion, I can play snowball fight, make snowmans, and roll down faster to the bottom of the mountain. I hope It could be winter all day.
+            </div>
+        </section>
+
+        <!-- Part 2: 평가 점수 (Stricter Rubric Applied) -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                평가 점수 (Re-evaluated Score)
+            </h3>
+            <table class="rubric-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Score</th>
+                        <th>Analysis (분석)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Organization & Structure (구성 및 구조)</td>
+                        <td><span class="score">3 / 4</span></td>
+                        <td>본론(First, Second, Third)과 결론(In conclusion)의 구조를 갖추고 있습니다. 결론에서 본론의 세 가지 이유를 요약한 점도 훌륭합니다. 다만, 글의 시작 부분에 명확한 서론 없이 바로 첫 번째 이유가 시작되어 에세이의 필수 요소를 완전히 갖추지는 못했습니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Development & Elaboration (내용 전개 및 상세화)</td>
+                        <td><span class="score">2 / 4</span></td>
+                        <td>주제문이 없어 글의 전체적인 방향이 명확하지 않습니다. 본론의 내용은 '눈싸움', '눈사람', '산에서 구르기' 등 창의적이고 재미있으나, 각 아이디어에 대한 구체적인 예시나 상세한 설명이 부족합니다. '가족이 눈에 넘어질 것이다'와 같은 상상력은 돋보입니다.</td>
+                    </tr>
+                    <tr>
+                        <td>Language & Conventions (언어 및 규칙)</td>
+                        <td><span class="score">1 / 4</span></td>
+                        <td>'snowball fight'를 'sporball fight', 'snowfight' 등으로 다르게 표기하고, 'snowmans'(→snowmen), 'then a slide'(→than a slide), 'It could be winter all day'(어색한 표현) 등 10개 이상의 철자, 문법, 어휘 오류가 발견됩니다. 오류가 많아 의미 전달을 방해하므로 1점으로 평가됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Overall Score (총점)</strong></td>
+                        <td colspan="2"><span class="score"><strong>6 / 12 (50%)</strong></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Part 3: 학생 역량 분석 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                역량 분석 (Skill Level Analysis)
+            </h3>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Vocabulary (어휘력)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'favorite', 'season', 'family', 'dangerous', 'bottom', 'mountain', 'conclusion' 등 G2 수준 이상의 어휘를 사용하고 있습니다. 특히 'huge', 'dangerous' 와 같은 묘사 어휘를 사용하는 점이 좋습니다.</p>
+                    <p><strong>강화 방안:</strong> 이미 좋은 어휘 기반을 가지고 있으므로, 단어를 사용할 때 정확한 철자를 다시 한번 확인하는 습관을 들이는 것이 중요합니다. 특히 'snowball fight'와 같이 자주 쓰는 표현은 정확히 암기해두는 것이 좋습니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Grammar (문법)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'my family will fall down', 'it will be fun' 과 같이 미래 시제를 정확하게 사용합니다. 'since it is dangerous', 'because I can move faster' 등 이유를 설명하는 복문을 사용하는 능력도 G2 수준에 부합합니다.</p>
+                    <p><strong>강화 방안:</strong> 비교급('faster than a slide')의 'than'과 순서를 나타내는 'then'의 차이를 명확히 구분하여 사용하는 연습이 필요합니다. 불규칙 복수형('snowmen')에 대한 학습도 도움이 될 것입니다.</p>
+                </div>
+                <div class="skill-card">
+                    <h4>Sentence Structure (문장 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 'First, Second, Third, In conclusion'과 같은 연결어를 사용하여 글의 구조를 만들려는 시도가 돋보입니다. 이는 G2 수준의 체계적인 글쓰기 능력입니다. 문장 구조는 대체로 단순하지만, 생각을 논리적으로 연결하려는 노력이 보입니다.</p>
+                    <p><strong>강화 방안:</strong> 글의 시작 부분에 "My favorite season is winter for three reasons." 와 같이 앞으로 나올 내용을 간략하게 소개해주는 서론 문장을 추가하는 연습을 하면 글이 훨씬 더 완성도 있게 보일 것입니다.</p>
+                </div>
+                 <div class="skill-card">
+                    <h4>Essay Structure (에세이 구조)</h4>
+                    <span class="level level-intermediate">Intermediate (G2)</span>
+                    <p><strong>분석:</strong> 본론을 세 부분으로 나누고 결론에서 요약하는 등 에세이의 기본 구조에 대한 이해가 있습니다. 그러나 서론이 없다는 점이 가장 큰 구조적 결함입니다. 본론과 결론만 있는 형태는 완전한 에세이로 보기 어렵습니다.</p>
+                    <p><strong>강화 방안:</strong> 글을 시작할 때 항상 '서론'이라는 첫 번째 집을 짓는다고 생각해야 합니다. 서론에서는 '내가 가장 좋아하는 계절은 겨울이다'라는 중심 생각과 '왜냐하면 A, B, C 때문이다'라는 세 가지 이유를 소개해주는 역할을 해야 합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 4: 상세 교정 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg>
+                상세 교정 (Detailed Corrections)
+            </h3>
+            <div class="correction-step">
+                <h4>Step 1: 문장별 교정</h4>
+                <div class="correction-table-container overflow-x-auto">
+                    <table class="correction-table">
+                        <thead>
+                            <tr><th>Original Sentence</th><th>Corrected Sentence</th><th>Explanation (설명)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="original-sentence">I can play snowball fight.</td><td class="corrected-sentence">I can have a <strong>snowball</strong> fight.</td><td>'눈싸움'은 'snowball fight'라고 써요. '싸움을 하다'는 'play'보다 'have a fight'라는 표현이 더 자연스러워요.</td></tr>
+                            <tr><td class="original-sentence">And my family can go to snowfight together.</td><td class="corrected-sentence">My family and I can have a snowball fight together.</td><td>'나'를 포함해서 말할 때는 다른 사람을 먼저 쓰고 'I'를 마지막에 쓰는 것이 좋아요.</td></tr>
+                            <tr><td class="original-sentence">...my family will fall down at the snow.</td><td class="corrected-sentence">...my family will fall down <strong>in</strong> the snow.</td><td>'눈 속에서' 넘어진다는 의미이므로 전치사 'in'을 써요.</td></tr>
+                            <tr><td class="original-sentence">Second, I can make snowmans.</td><td class="corrected-sentence">Second, I can make <strong>snowmen</strong>.</td><td>'snowman'의 복수형은 'snowmen'이에요. 불규칙하게 변하는 명사랍니다.</td></tr>
+                            <tr><td class="original-sentence">...it will be fun to make a huge snowman.</td><td class="corrected-sentence">...it will be fun to make a huge snowman. (Good sentence!)</td><td>훌륭한 문장이에요! 'to make' 용법을 잘 사용했어요.</td></tr>
+                            <tr><td class="original-sentence">I would love to roll down faster because I can move faster then a slide.</td><td class="corrected-sentence">I would love to roll down faster because I can move faster <strong>than</strong> a slide.</td><td>'~보다' 더 빠르다고 비교할 때는 'then'이 아니라 'than'을 써야 해요.</td></tr>
+                            <tr><td class="original-sentence">I hope It could be winter all day.</td><td class="corrected-sentence">I wish it could be winter <strong>all year long</strong>.</td><td>'하루 종일'이라는 'all day'보다 '일년 내내'라는 뜻의 'all year long'이 더 자연스러워요. '바라다'는 'hope'보다 'wish'를 쓰는 것이 더 어울려요.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 5: 최종 교정 모델 -->
+        <section class="section">
+            <h3 class="section-title">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 18V7.125C4.5 6.504 5.004 6 5.625 6H9" /></svg>
+                최종 교정 모델 (Final Corrected Model)
+            </h3>
+            <div class="final-essay">
+                <strong><center>My Favorite Season: Winter</center></strong><br>
+                My favorite season is winter. <strong>I love winter for three reasons: I can have snowball fights, I can make huge snowmen, and I can roll down snowy mountains.</strong><br><br>
+                First, I can have a <strong>snowball</strong> fight. My family and I can play together. I like to throw a big snowball and watch my family fall down <strong>in</strong> the snow. I think it is very fun.<br><br>
+                Second, I can make <strong>snowmen</strong>. I want to make a huge snowman, and my family can make their own <strong>snowmen</strong> too. I think it will be fun to see all the different <strong>snowmen</strong> we create.<br><br>
+                Third, I can roll down a snowy mountain. My family doesn't do it since it is dangerous, but I would love to try. I think I could roll down even faster <strong>than</strong> a slide, which would be very exciting.<br><br>
+                In conclusion, I love winter because I can have a <strong>snowball</strong> fight, make <strong>snowmen</strong>, and roll down a mountain. I wish it could be winter <strong>all year long</strong>!
+            </div>
+        </section>
+
+        <!-- Part 6: 학생에게 보내는 편지 -->
+        <section class="section">
+            <div class="letter">
+                <h4>성보검 학생에게,</h4>
+                <p>안녕하세요, 보검(Bogeom) 학생!</p>
+                <p class="mt-4">겨울을 가장 좋아하는 이유에 대한 글 잘 읽었어요. 가족들과 함께 눈싸움을 하고, 거대한 눈사람을 만들고, 심지어 눈 덮인 산을 굴러 내려오는 상상까지! 보검 학생의 글을 읽으니 정말 신나고 활기찬 겨울의 모습이 그려졌어요. <strong>이렇게 역동적이고 재미있는 상상력을 가지고 있다는 것이 보검 학생의 가장 큰 장점이에요.</strong></p>
+                <p class="mt-4">보검 학생은 이미 글의 본론과 결론을 쓰는 방법을 알고 있어요. 그런데 글을 시작할 때, 독자들에게 어떤 이야기를 할지 미리 알려주는 '소개' 부분이 빠져 있어서 조금 아쉬워요. **글의 첫 부분에 서론(Introduction)을 쓰지 않은 점**이 **현재 가장 보완하면 좋을 점(primary weakness)**이에요.</p>
+                <p class="mt-4">그래서 아주 중요한 공부 팁을 한 가지 줄게요. 바로 <strong>'글의 지도 만들기'</strong> 연습이에요.</p>
+                <p class="mt-4">다음 글을 쓸 때는, 글의 맨 처음에 '지도'를 그려준다고 생각해보세요. 지도에는 두 가지가 꼭 들어가야 해요. 첫째는 목적지, 즉 '내가 가장 좋아하는 계절은 겨울이다'라는 중심 생각이에요. 둘째는 그 목적지로 가는 세 가지 길, 즉 '왜냐하면 눈싸움, 눈사람 만들기, 산에서 구르기를 할 수 있기 때문이다'라는 이유들이죠. 이렇게 글의 시작에 지도(서론)를 그려주면, 독자들이 앞으로 어떤 이야기가 펼쳐질지 기대하며 글을 더 재미있게 읽을 수 있답니다. 보검 학생의 신나는 상상력에 멋진 지도를 더해주기를 응원할게요!</p>
+                <p class="mt-6 font-semibold text-right">- Your Writing Coach</p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
